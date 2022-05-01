@@ -1,0 +1,8 @@
+swiper{
+    height: 57.41vw;
+    width: 100%;
+}
+image{
+    width: 100%;
+
+}

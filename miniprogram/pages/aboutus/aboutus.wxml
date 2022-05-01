@@ -1,0 +1,7 @@
+<!--pages/aboutus/aboutus.wxml-->
+<view class='header'>
+  <image src="../../icon/logo.jpg"></image>
+</view>
+<view class="login_txt1">关于我们</view>
+<view class="login_txt2">阿巴阿巴阿巴阿巴</view>
+

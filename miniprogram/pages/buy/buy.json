@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "SearchInput":"../../dist/SearchInput/SearchInput"
+    },
+    "navigationBarTitleText": "购买农产品"
+
+}

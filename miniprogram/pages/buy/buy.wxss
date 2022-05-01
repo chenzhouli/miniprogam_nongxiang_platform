@@ -1,0 +1,8 @@
+/* pages/buy/buy.wxss */
+.swiper .image{
+    width: 100%;
+}
+.swiper {
+    width: 750rpx;
+    height: 450rpx;
+}

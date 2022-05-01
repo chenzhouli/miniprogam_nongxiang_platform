@@ -1,0 +1,31 @@
+/* pages/aboutus/aboutus.wxss */
+.header image{
+
+    border-radius: 50%; 
+    height: 300rpx;  
+    width: 300rpx;
+    
+}
+.header {
+    padding-top: 100rpx;
+    padding-bottom: 100rpx;
+    display: flex;
+    justify-content: center;
+}
+.login_txt1 {
+    margin-left: 50rpx;
+    margin-top: 50rpx; 
+    margin-bottom: 20rpx;    
+    font-size: 40rpx;  
+    color: #020e0f;  
+    text-align: center;
+
+}
+.login_txt2{
+    margin-left: 25rpx;
+    margin-top: 10rpx;   
+    margin-bottom: 60rpx;    
+    font-size: 35rpx;   
+    color: #666;   
+    text-align: center;
+}

@@ -1,0 +1,5 @@
+<!--轮播图外层容器 swiper 1080*620-->
+<swiper autoplay interval="2000" circular indicator-dots>
+<swiper-item><image mode="widthFix" src="https://pic.imgdb.cn/item/626671d3239250f7c55f4dd9.jpg" /></swiper-item>
+<swiper-item><image mode="widthFix" src="https://pic.imgdb.cn/item/626671cb239250f7c55f3986.jpg" /></swiper-item>
+</swiper>

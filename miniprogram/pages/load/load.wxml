@@ -1,0 +1,12 @@
+<!--pages/load/load.wxml-->
+
+<view class='header'>
+  <image src="../../icon/logo.jpg"></image>
+</view>
+<view class="login_txt1">申请获得以下权限</view>
+<view class="login_txt2">获得你的公开信息（昵称，头像，手机等）</view>
+<view>
+   <button class="bottom" bindtap="getUI" type='primary'>授权登录</button><!-- 授权登录按钮 -->
+</view>
+<!-- type='primary' 默认按钮为蓝色 --><!-- 授权登录 为按钮内容 -->
+

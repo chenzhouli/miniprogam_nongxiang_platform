@@ -1,0 +1,60 @@
+/* pages/mine/mine.wxss */
+page{/*页面背景—————统一浅灰*/
+    background-color: #ededed;
+  }
+  .navView{
+    display: flex;  /* 应用flex布局 ，所有的子元素排在一行*/
+    flex-wrap: wrap; /* 换行*/
+    height: 170rpx;
+    width: 750rpx;
+    align-content: space-around; /* 多行垂直排列*/
+    font-size: 26rpx;
+    font-weight: 600;
+    background-color: #ffffff;
+    border-radius: 20px
+  }
+  .navView .navItemView{
+    flex-direction: column;
+    display: flex;
+    width: 150rpx;
+    align-items: center;
+    margin: 0 50rpx;
+  }
+  .navItemView >image{
+    display: flex;
+    width: 110rpx;
+    height: 110rpx;
+  }
+
+  .about{
+      padding-top: 50rpx;
+  }
+  #onlineView{
+    height: 88rpx;
+    background: #FFFFFF;
+    margin: 24rpx 0;
+    padding: 0 15rpx;
+    line-height: 88rpx;
+    position: relative;  /* 相对定位，让父元素具有定位属性 */
+  }
+  #onlineView > image{
+    width: 60rpx;
+    height: 60rpx;
+    vertical-align: middle;
+  }
+  #onlineView > text{
+    font-size: 26rpx;
+    font-weight: 600;
+    vertical-align: middle;
+  }
+  /* 右箭头 */
+  .arrow{
+    width: 16rpx;
+    height: 16rpx;
+    border-top: 4rpx solid #B1B1B1;
+    border-right: 4rpx solid #B1B1B1;
+    transform: rotate(45deg); /* 旋转45度 */
+    position: absolute;  /* 绝对定位，相对于父元素进行定位，前提父元素必须具有定位属性 */
+    right: 30rpx;
+    top: 38rpx;
+  }

@@ -1,0 +1,20 @@
+<view class="prod_buy">
+<!--搜索框-->
+<SearchInput></SearchInput>
+</view>
+<view class="tabs">
+    <view class="tabs_title">
+        <view wx:for="{{tabs}}"
+        wx:key="id"
+        class="title_item  {{item.isActive?'active':''}}"
+        bindtap = "handleItemTap"
+        data-index="{{index}}"
+        >
+            {{item.value}}
+        </view>
+          
+    </view>
+      <view class="tabs-content">
+          <slot></slot>
+      </view>
+</view>

@@ -1,0 +1,11 @@
+<!--pages/buy/buy.wxml-->
+<view class="prod_buy">
+<!--搜索框-->
+<SearchInput></SearchInput>
+</view>
+<!--顶部轮播图-->
+<swiper indicator-dots autoplay circular >
+  <swiper-item wx:for="{{topImgs}}" wx:key="_id">
+    <image mode="widthFix" src="{{item.imgUrl}}"></image>
+  </swiper-item>
+</swiper>

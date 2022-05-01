@@ -1,0 +1,55 @@
+{
+  "pages":[  
+    "pages/load/load",
+    "pages/index/index",   
+    "pages/empty/empty",
+    "pages/adopt/adopt",  
+    "pages/mine/mine",
+ 
+    "pages/search/search",
+    "pages/logs/logs" ,
+    "pages/buy/buy",
+    "pages/aboutus/aboutus",
+    "pages/sugg/sugg"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#A5E646",
+    "navigationBarTitleText": "农享",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh":true
+  },
+  "tabBar": {
+    "list": [
+      {
+      "pagePath":"pages/index/index",
+      "text": "主页",
+      "iconPath": "icon/shouyexuanzhong.png",
+      "selectedIconPath": "icon/shouyexuanzhong1.png"
+    },
+    {
+     "pagePath":"pages/empty/empty",
+     "text": "闲地利用",
+     "iconPath": "icon/dingdanxuanzhong.png",
+     "selectedIconPath": "icon/dingdanxuanzhong1.png"
+   },
+   {
+     "pagePath":"pages/adopt/adopt",
+     "text": "认养",
+     "iconPath": "icon/shangdianxuanzhong.png",
+     "selectedIconPath": "icon/shangdianxuanzhong1.png"
+   },
+   {
+     "pagePath":"pages/mine/mine",
+     "text": "我的",
+     "iconPath": "icon/shengyiquanxuanzhong.png",
+     "selectedIconPath": "icon/shengyiquanxuanzhong1.png"
+   }
+   ],
+   "color": "#000000",
+   "selectedColor": "#64F68A"
+
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

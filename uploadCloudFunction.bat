@@ -1,0 +1,1 @@
+"E:\微信小程序\微信web开发者工具\cli.bat" cloud functions deploy --e env-6g948tux97e332ca --n quickstartFunctions --r --project "E:\微信小程序\项目4" --report_first && "E:\微信小程序\微信web开发者工具\cli.bat" cloud functions deploy --e kkka-8gv43rlkfbb24275 --n quickstartFunctions --r --project "E:\微信小程序\项目4" --report

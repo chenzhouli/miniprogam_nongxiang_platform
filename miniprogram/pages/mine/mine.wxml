@@ -1,0 +1,46 @@
+<!--pages/mine/mine.wxml-->
+<!--个人信息-->
+<i-card title="nickName" extra="个人信息" thumb="../../icon/logo.jpg" full="true">
+    <view slot="content">个性签名：</view>
+</i-card>
+
+<view class="navView">
+  <view class="navItemView">
+    <image src="../../icon/dingdan.png"></image>
+    <text>我的土地</text>
+  </view>
+  <view class="navItemView">
+    <image src="../../icon/faxian.png"></image>
+    <text>我的出行</text>
+  </view>
+  <view class="navItemView">
+    <image src="../../icon/shoucang.png"></image>
+    <text>我的收藏</text>
+  </view>
+</view>
+
+<view class="about">
+<view id="onlineView">
+  <image src="../../icon/shoucang.png"></image>
+  <text>设置</text>
+  <!-- 右箭头实现 -->
+  <view class="arrow"></view>
+</view>
+<view id="onlineView" bindtap="bind_sugg">
+  <image src="../../icon/shoucang.png" ></image>
+  <text>意见反馈</text>
+  <!-- 右箭头实现 -->
+  <view class="arrow"></view>
+</view>
+<view id="onlineView" bindtap="bind_aboutus">
+  <image src="../../icon/shoucang.png"></image>
+  <text>关于我们</text>
+  <!-- 右箭头实现 -->
+  <view class="arrow"></view>
+</view>
+</view>
+<!--
+<i-card class="card" title="采摘小tip" extra="来自：" thumb="cloud://env-6g948tux97e332ca.656e-env-6g948tux97e332ca-1311388574/top_pic/5b06886004b3c9cb018290c15bd33e2a.jpeg">
+  		 <view slot="content" >那些你必须知道的蔬果采摘小技巧和注意事项.......</view>
+</i-card>
+-->
