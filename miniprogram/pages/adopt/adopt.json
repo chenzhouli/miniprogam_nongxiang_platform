@@ -1,4 +1,4 @@
 {
-  "usingComponents": {"SearchInput":"../../dist/SearchInput/SearchInput"},
+  "usingComponents": {},
   "navigationBarTitleText": "认养土地"
 }

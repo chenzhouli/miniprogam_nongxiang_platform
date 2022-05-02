@@ -1,20 +1,47 @@
-<view class="prod_buy">
-<!--搜索框-->
-<SearchInput></SearchInput>
+
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" 
+data-current="0" bindtap="swichNav">
+距离
 </view>
-<view class="tabs">
-    <view class="tabs_title">
-        <view wx:for="{{tabs}}"
-        wx:key="id"
-        class="title_item  {{item.isActive?'active':''}}"
-        bindtap = "handleItemTap"
-        data-index="{{index}}"
-        >
-            {{item.value}}
-        </view>
-          
-    </view>
-      <view class="tabs-content">
-          <slot></slot>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" 
+	data-current="1" bindtap="swichNav">
+种植品种
+</view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" 
+	data-current="2" bindtap="swichNav">
+价格
+</view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+  <swiper-item>
+  
+    <view>
+        <view class='list'>
+  <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
+  <view class="list_item">
+      <navigator url='details?id={{item.goods_id}}'>
+      <view class='img'>
+        <image src="{{imghref}}{{item.goods_img}}"  mode="scaleToFill"/>
       </view>
+      <view class='info'>
+        <view class='title'>{{item.goods_title}}</view>
+        <view class='price'>￥{{item.goods_price}}</view>
+        <view class='num'>销量{{item.goods_xiaoliang}}</view>
+      </view>
+       </navigator>
+      <view class='clear'></view>
+  </view>
+  </block>
 </view>
+    
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view>我是详情内容</view>
+  </swiper-item>
+  <swiper-item>
+    <view>我是评论内容</view>
+  </swiper-item>
+</swiper>

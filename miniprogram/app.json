@@ -1,14 +1,16 @@
 {
-  "pages":[  
+  "pages":[
+    
     "pages/load/load",
     "pages/index/index",   
-    "pages/empty/empty",
+    "pages/buy/buy",
     "pages/adopt/adopt",  
     "pages/mine/mine",
- 
+    "pages/empty/empty",
     "pages/search/search",
     "pages/logs/logs" ,
-    "pages/buy/buy",
+    "pages/count/count",
+    "pages/buy_car/buy_car", 
     "pages/aboutus/aboutus",
     "pages/sugg/sugg"
   ],
@@ -28,8 +30,8 @@
       "selectedIconPath": "icon/shouyexuanzhong1.png"
     },
     {
-     "pagePath":"pages/empty/empty",
-     "text": "闲地利用",
+     "pagePath":"pages/buy/buy",
+     "text": "果蔬购买",
      "iconPath": "icon/dingdanxuanzhong.png",
      "selectedIconPath": "icon/dingdanxuanzhong1.png"
    },

@@ -1,36 +1,20 @@
-// pages/buy/buy.js
+// page/count/count.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        topImgs:[]
-        },
+
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        this.getTopImgs();
+
     },
-        //获取顶部轮播图
-        getTopImgs(){
-            wx.cloud.database().collection("buy_toppic").get()
-              .then(res =>{
-                  console.log('请求成功',res)
-                  this.setData({
-                      topImgs:res.data
-                  })
-              })
-              .catch(res =>{
-                console.log('请求失败',res)
-            })
-    },
-    binbuycar(){
-        wx.navigateTo({
-            url: '../../pages/buy_car/buy_car',
-          })
-    },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

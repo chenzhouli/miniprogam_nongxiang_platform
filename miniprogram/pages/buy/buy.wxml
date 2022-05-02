@@ -9,3 +9,6 @@
     <image mode="widthFix" src="{{item.imgUrl}}"></image>
   </swiper-item>
 </swiper>
+<view id="askView" bindtap="binbuycar">
+  <image src="../../icon/gouwuchexuanzhong.png"></image>
+</view>

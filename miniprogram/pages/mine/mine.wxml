@@ -22,7 +22,7 @@
 <view class="about">
 <view id="onlineView">
   <image src="../../icon/shoucang.png"></image>
-  <text>设置</text>
+  <text>我的订单</text>
   <!-- 右箭头实现 -->
   <view class="arrow"></view>
 </view>
