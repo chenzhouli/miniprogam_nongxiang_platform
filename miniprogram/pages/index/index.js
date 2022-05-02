@@ -7,7 +7,11 @@ Page({
    
   },
   // 事件处理函数
-  
+  uploading(){
+    wx.navigateTo({
+        url: '../../pages/file/file'
+      })
+  },
   onLoad() {
    
   },

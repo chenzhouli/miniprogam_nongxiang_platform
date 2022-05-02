@@ -4,7 +4,12 @@
 <swiper-item><image mode="widthFix" src="https://pic.imgdb.cn/item/626671cb239250f7c55f3986.jpg" /></swiper-item>
 </swiper>
 
-<!--购买商品-->
+<!--上传文件-->
+<view class="uploading">
+<text>如果你有闲置的土地，不妨让我们一起将他利用起来</text>
+<button class="bottom" bindtap="uploading" type='primary'>闲地利用</button>
+</view>
+
 
 
 <view class="intro"><text>你想知道的</text></view>

@@ -1,0 +1,30 @@
+/* pages/file/file.wxss */
+.imgbox{
+    width: 100%;
+    min-height: 70rpx;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .add{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20rpx;
+  }
+  .delete{
+    font-size: 24rpx;
+    color: #E60000;
+  }
+  .uploading button{
+    background-color: green;
+    position: relative;
+    width: 100%;
+    align-items: center;
+}
+.uploading{
+    padding-top: 50rpx;
+    padding-left: 20rpx;
+}

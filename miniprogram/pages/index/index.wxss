@@ -35,8 +35,20 @@ image{
   }
 .intro{
     padding-left: 25rpx;
-    padding-top: 100rpx;
+    padding-top: 40rpx;
     font-size: 50rpx;
     font-weight: 600;
     
+}
+.uploading{
+    padding-top: 50rpx;
+    padding-bottom: 20rpx;
+    background-color: rgb(240, 240, 240);
+    border-radius: 20px;
+}
+.uploading button{
+    background-color: green;
+    font-size: 30rpx;
+    position: relative;
+    width: 30%;
 }
