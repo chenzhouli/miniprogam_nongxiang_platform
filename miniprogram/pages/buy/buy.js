@@ -19,25 +19,25 @@ Page({
             goods_xiaoliang: '0',
             goods_price: '60'
           }, {
-            goods_id: 1,
+            goods_id: 2,
             goods_title: '商品标题2',
             goods_img: '../../icon/logo.jpg',
             goods_xiaoliang: '0',
             goods_price: '70'
           }, {
-            goods_id: 1,
+            goods_id: 3,
             goods_title: '商品标题3',
             goods_img: '../../icon/logo.jpg',
             goods_xiaoliang: '0',
             goods_price: '80'
           }, {
-            goods_id: 1,
+            goods_id: 4,
             goods_title: '商品标题4',
             goods_img: '../../icon/logo.jpg',
             goods_xiaoliang: '0',
             goods_price: '90'
           }, {
-            goods_id: 1,
+            goods_id: 5,
             goods_title: '商品标题5',
             goods_img: '../../icon/logo.jpg',
             goods_xiaoliang: '0',
@@ -71,8 +71,7 @@ Page({
                   winHeight: res.windowHeight
                 });
               }
-            });
-
+            })
     },
     binbuycar(){
         wx.navigateTo({
@@ -93,6 +92,14 @@ Page({
             currentTab: e.target.dataset.current
           })
         }
+    },
+    bind_detail:function(e){
+        let goods_id=e.currentTarget.dataset.goods_id //获取点击产品时拿到的id，就是data-id传过来的值
+        // wx.navigateTo跳转页面的方法
+        //URL是传递的是详情页的路径，把id拼接传过去就可以啦
+        wx.navigateTo({
+            url: "../detail/detail?goods_id="+goods_id,
+        })
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

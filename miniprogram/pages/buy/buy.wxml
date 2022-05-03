@@ -9,6 +9,7 @@
     <image mode="widthFix" src="{{item.imgUrl}}"></image>
   </swiper-item>
 </swiper>
+
 <view id="askView" bindtap="binbuycar">
   <image src="../../icon/gouwuchexuanzhong.png"></image>
 </view>
@@ -33,8 +34,7 @@ data-current="0" bindtap="swichNav">
     <view>
         <view class='list'>
   <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
-  <view class="list_item">
-      <navigator url='details?id={{item.goods_id}}'>
+  <view class="list_item" bindtap="bind_detail" data-goods_id="{{item.goods_id}}">
       <view class='img'>
         <image src="{{imghref}}{{item.goods_img}}"  mode="scaleToFill"/>
       </view>
@@ -43,7 +43,6 @@ data-current="0" bindtap="swichNav">
         <view class='price'>￥{{item.goods_price}}</view>
         <view class='num'>销量{{item.goods_xiaoliang}}</view>
       </view>
-       </navigator>
       <view class='clear'></view>
   </view>
   </block>

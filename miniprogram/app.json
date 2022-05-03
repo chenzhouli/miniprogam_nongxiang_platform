@@ -13,7 +13,8 @@
     "pages/buy_car/buy_car", 
     "pages/aboutus/aboutus",
     "pages/sugg/sugg",
-    "pages/file/file"
+    "pages/file/file",
+    "pages/detail/detail"
   ],
   "window":{
     "backgroundTextStyle":"dark",
