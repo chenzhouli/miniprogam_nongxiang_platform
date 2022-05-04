@@ -11,6 +11,7 @@ Page({
         goods_xiaoliang:"",
         goods_price:"",
         detailImg:"",
+        swiperList:[],
     },
 
     /**
@@ -53,7 +54,7 @@ Page({
       });
     },
     //加入购物车
-
+    
     // 跳到购物车
     binbuycar() {
     wx.navigateTo({

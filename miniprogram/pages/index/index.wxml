@@ -9,14 +9,12 @@
 <button class="bottom" bindtap="uploading" type='primary'>闲地利用</button>
 </view>
 
-
-
-<view class="intro"><text>你想知道的</text></view>
+<view class="intro"><text>农园玩乐攻略</text></view>
 <!--滑动图-->
 <scroll-view class="srcolbox" scroll-x	scroll-with-animation='true'>
-  <view class="item">1</view>
-  <view class="item">2</view>
-  <view class="item">3</view>
-  <view class="item">4</view>
-  <view class="item">5</view>
+  <view class="item" wx:for="{{text}}" wx:key="_id">
+    <image mode="widthFix" src="{{item.imgUrl}}"></image>
+    <text>{{itrm.text}}</text>
+  </view>
 </scroll-view>
+
