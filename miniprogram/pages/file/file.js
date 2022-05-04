@@ -5,37 +5,50 @@ Page({
      * 页面的初始数据
      */
     data: {
-        images: [],
-
+        // 被选中的图片路径 数组
+    chooseImgs: [],
     },
-    chooseImage: function (e) {
+
+    handleChooseImg(e) {
+        // 2 调用小程序内置的选择图片api
         wx.chooseImage({
-          sizeType: ['original', 'compressed'], //可选择原图或压缩后的图片
-          sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
-          success: res => {
-            const images = this.data.images.concat(res.tempFilePaths)
+          // 同时选中的图片的数量
+          count: 9,
+          // 图片的格式  原图  压缩
+          sizeType: ['original', 'compressed'],
+          // 图片的来源  相册  照相机
+          sourceType: ['album', 'camera'],
+          success: (result) => {
             this.setData({
-              images: images
+              // 图片数组 进行拼接 
+              chooseImgs: [...this.data.chooseImgs, ...result.tempFilePaths],
             })
           }
-        })
+        });
       },
-      // 删除图片
-      removeImage(e) {
-        const idx = e.target.dataset.idx;
-        this.data.images.splice(idx, 1);
-        var del_image = this.data.images;
-        this.setData({
-          images: del_image
-        })
-      },
+      
+      // 根据索引删除上传的图片
+  handleRemoveImg(e){
+    // 1 获取被点击的组件的索引
+    const {index} = e.currentTarget.dataset;
+    // 2 获取data中的图片数组
+    let { chooseImgs } = this.data;
+    // 3 删除元素
+    chooseImgs.splice(index, 1);
+    this.setData({
+      chooseImgs
+    })
+  },
+    // 外网的图片的路径数组
+    UpLoadImgs: [],
+  
       // 查看大图
       handleImagePreview(e) {
-        const idx = e.target.dataset.idx
-        const images = this.data.images
+        const {index} = e.currentTarget.dataset;
+        const chooseImgs = this.data.chooseImgs;
         wx.previewImage({
-          current: images[idx], //当前预览的图片
-          urls: images, //所有要预览的图片
+          current: chooseImgs[index], //当前预览的图片
+          urls: chooseImgs, //所有要预览的图片
         })
       },
     /**

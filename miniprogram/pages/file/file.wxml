@@ -1,18 +1,59 @@
+<view class="container">
+<view class="person">
+  <text>申请人：</text>
+  <input type="text" placeholder="申请人姓名" bindinput="getperson" bindinput="getname" value="{{address.name}}"/>
+</view>
 
-<view class="imgbox">
-   <!-- 存放上传的图片的盒子 -->
-   <block wx:for="{{images}}" wx:key="this">
-      <view class="add">
-         <!-- 图片缩略图  -->
-         <image src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
-         <!-- 移除图片的按钮  -->
-         <view class="delete" data-idx="{{index}}" bindtap="removeImage">删除</view>
+<view class="phonenumber">
+  <text>手机号码：</text>
+  <input type="text" placeholder="请输入您的电话" bindinput="getphonenumber" value="{{address.num}}"/>
+</view>
+ 
+<view class="address">
+  <text>详细地址：</text>
+  <input type="text" placeholder="您想上传的土地地址" bindinput="address" bindinput="getaddress" value="{{address.addressdetail}}"/>
+</view>
+</view>
+
+<text class="pic">相关资料:</text>
+<view class="fb_content">
+      <view class="fb_tool">
+        <button bindtap="handleChooseImg">+</button>
+        <view
+         class="up_img_item"
+         wx:for="{{chooseImgs}}"
+         wx:key="*this"
+         data-index="{{index}}"
+        >
+       <view class="up_img_wrap">
+       <image src="{{item}}"  bindtap="handleImagePreview"></image>
+         <icon
+            type="clear"
+            size="23"
+            color="red"
+            bindtap="handleRemoveImg"
+              >
+          </icon>
+          </view>
+
+        </view>
       </view>
-   </block>
-<view class="uploading">
-<button class="bottom" bindtap="chooseImage" type='primary'>上传文件</button>
-</view>
-<view class="uploading">
-<button class="bottom" type='primary'>提交</button>
-</view>
-</view>
+    </view>
+
+ 
+
+
+
+    <view class="form_btn_wrap">
+      <button bindtap="handleFormSubmit" type="warn">
+        <icon
+         type="success_no_circle"
+         size="23"
+         color="white"
+        >
+        </icon>
+        提交
+      </button>
+    </view>
+
+

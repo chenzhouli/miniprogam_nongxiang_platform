@@ -1,10 +1,6 @@
-swiper{
+.toppic image{
     height: 57.41vw;
     width: 100%;
-}
-image{
-    width: 100%;
-
 }
 .srcolbox {
     width: 100%;
@@ -47,7 +43,7 @@ image{
     border-radius: 20px;
 }
 .uploading button{
-    background-color: green;
+    background-color: rgb(0, 156, 96);
     font-size: 30rpx;
     position: relative;
     width: 30%;

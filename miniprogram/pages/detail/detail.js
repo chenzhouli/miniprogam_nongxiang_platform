@@ -62,11 +62,9 @@ Page({
   },
   //立即购买
   immeBuy() {
-    wx.showToast({
-      title: '购买成功',
-      icon: 'success',
-      duration: 2000
-    });
+      wx.navigateTo({
+        url: '../pay/pay',
+      })
   },
     /**
      * 生命周期函数--监听页面初次渲染完成

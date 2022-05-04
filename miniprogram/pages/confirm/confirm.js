@@ -1,4 +1,4 @@
-// page/count/count.js
+// pages/confirm/confirm.js
 Page({
 
     /**

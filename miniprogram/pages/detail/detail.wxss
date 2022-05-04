@@ -20,8 +20,10 @@
     flex-direction: column;
     margin-top: 15rpx;
     margin-bottom: 0rpx;
+    padding-top: 30rpx;
   }
   .detail .title {
+    
     font-size: 40rpx;
     margin: 10rpx;
     color: black;
@@ -101,4 +103,11 @@
     display: block;
     font-size: 25rpx;
     margin: 10rpx;
+  }
+  .toppic {
+    height: 57.41vw;
+    width: 100%; 
+  }   
+  .toppic image {
+      width: 100%;
   }

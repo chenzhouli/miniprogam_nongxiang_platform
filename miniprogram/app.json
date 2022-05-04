@@ -6,19 +6,20 @@
     "pages/buy/buy",
     "pages/adopt/adopt",  
     "pages/mine/mine",
-    "pages/empty/empty",
-    "pages/search/search",
     "pages/logs/logs" ,
     "pages/count/count",
     "pages/buy_car/buy_car", 
     "pages/aboutus/aboutus",
     "pages/sugg/sugg",
     "pages/file/file",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/pay/pay",
+    "pages/confirm/confirm",
+    "components/upImgs/upImgs"
   ],
   "window":{
     "backgroundTextStyle":"dark",
-    "navigationBarBackgroundColor": "#A5E646",
+    "navigationBarBackgroundColor": "#B9F5D4",
     "navigationBarTitleText": "农享",
     "navigationBarTextStyle":"black",
     "enablePullDownRefresh":true
@@ -54,6 +55,6 @@
    "selectedColor": "#64F68A"
 
   },
-  "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+
+  "sitemapLocation": "sitemap.json"
 }

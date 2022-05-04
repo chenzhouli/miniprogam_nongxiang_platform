@@ -73,6 +73,7 @@ Page({
             url: '../../pages/buy_car/buy_car',
           })
     },
+
     bindChange: function (e) {
         var that = this;
         that.setData({ currentTab: e.detail.current });
@@ -88,6 +89,7 @@ Page({
           })
         }
     },
+
     bind_detail:function(e){
         let goods_id=e.currentTarget.dataset.goods_id //获取点击产品时拿到的id，就是data-id传过来的值
         // wx.navigateTo跳转页面的方法

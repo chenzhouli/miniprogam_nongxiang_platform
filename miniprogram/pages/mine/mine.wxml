@@ -34,12 +34,14 @@
   <!-- 右箭头实现 -->
   <view class="arrow"></view>
 </view>
-<view id="onlineView" bindtap="bind_sugg">
+
+<button id="onlineView"open-type='feedback'>
   <image src="../../icon/shoucang.png" ></image>
   <text>意见反馈</text>
   <!-- 右箭头实现 -->
   <view class="arrow"></view>
-</view>
+</button>
+
 <view id="onlineView" bindtap="bind_aboutus">
   <image src="../../icon/shoucang.png"></image>
   <text>关于我们</text>

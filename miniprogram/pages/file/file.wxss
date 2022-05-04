@@ -1,30 +1,103 @@
-/* pages/file/file.wxss */
-.imgbox{
-    width: 100%;
-    min-height: 70rpx;
+.fb_content{
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+}
+.fb_tool {
+    display: flex;
     flex-wrap: wrap;
+    padding-bottom: 30rpx;
   }
+  .fb_tool button{
+      margin: 0;
+      width: 90rpx;
+      height: 90rpx;
+      font-size: 60rpx;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 100rpx;
+      margin-top: 0rpx;
+      color: #ccc;
+    }
+    .fb_tool .up_img_item{
+      margin-left: 30rpx;
+      margin-top: 0rpx;
+    }
 
-  .add{
+.form_btn_wrap {
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+  .form_btn_wrap button{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    margin-right: 20rpx;
+    margin: 0;
+    width: 30%;
+    color: white;
+    background-color: #e64340;
   }
-  .delete{
-    font-size: 24rpx;
-    color: #E60000;
-  }
-  .uploading button{
-    background-color: green;
-    position: relative;
-    width: 100%;
-    align-items: center;
-}
-.uploading{
-    padding-top: 50rpx;
-    padding-left: 20rpx;
-}
+  .fb_content {
+    background-color: #fff;
+    margin-top: 20rpx;
+    }
+
+
+    view{
+        display: flex;
+      }
+      .container{
+        padding-bottom:10% ;
+      }
+      view{
+        position: relative;
+        left: -4%;
+        margin-top: 55rpx;
+      }
+      .person{
+        line-height: 37rpx;
+      }
+      .person text{
+        position: relative;
+        left: -4%;
+          font-size: 38rpx;
+          font-weight:600;
+      }
+      .phonenumber{
+        line-height: 37rpx;
+      }
+      .phonenumber text{
+        font-size: 38rpx;
+        font-weight:600;
+      }
+      .address{
+        line-height: 37rpx;
+      }
+      .address text{
+        font-size: 38rpx;
+          font-weight:600;
+      }
+      .pic{
+          font-size: 38rpx;
+          font-weight:600;
+          padding-left: 50rpx;
+      }
+   
+      .up_img_wrap{
+        width: 130rpx;
+        height: 130rpx;
+        position: relative;
+      }
+      .up_img_wrap image{
+        width: 100%;
+        height: 100%;
+        border-radius: 15rpx;
+      }
+      .up_img_wrap icon{
+        position: absolute;
+        top:-22rpx;
+        right: -22rpx;
+      }

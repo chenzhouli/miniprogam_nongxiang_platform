@@ -1,4 +1,4 @@
-// pages/search/search.js
+// components/upImgs/upImgs.js
 Page({
 
     /**

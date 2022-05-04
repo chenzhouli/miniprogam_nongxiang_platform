@@ -10,9 +10,6 @@
 					</view>
 					<view class="product-movable-item">
 						<view class="goods-name">{{item.name}}</view>
-						<view class="goods-type">最新款
-							<text>{{item.style}}</text>
-						</view>
 						<view class="goods-price">￥{{item.price}}</view>
 					</view>
 					<view class="product-movable-item product-movable-item-amount">

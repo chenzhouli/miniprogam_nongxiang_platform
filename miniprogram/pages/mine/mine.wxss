@@ -11,7 +11,7 @@ page{/*页面背景—————统一浅灰*/
     font-size: 26rpx;
     font-weight: 600;
     background-color: #ffffff;
-    border-radius: 20px
+    border-radius: 20px;
   }
   .navView .navItemView{
     flex-direction: column;
@@ -24,33 +24,36 @@ page{/*页面背景—————统一浅灰*/
     display: flex;
     width: 110rpx;
     height: 110rpx;
+
   }
 
   .about{
       padding-top: 50rpx;
   }
   #onlineView{
-    height: 88rpx;
+    height: 100rpx;
     background: #FFFFFF;
     margin: 24rpx 0;
     padding: 0 15rpx;
     line-height: 88rpx;
     position: relative;  /* 相对定位，让父元素具有定位属性 */
+    text-align: left;
   }
   #onlineView > image{
-    width: 60rpx;
-    height: 60rpx;
-    vertical-align: middle;
+    width: 70rpx;
+    height: 70rpx;
+    vertical-align: middle; 
   }
-  #onlineView > text{
-    font-size: 26rpx;
+  #onlineView > text{    
+   
+    font-size: 30rpx;
     font-weight: 600;
     vertical-align: middle;
   }
   /* 右箭头 */
   .arrow{
-    width: 16rpx;
-    height: 16rpx;
+    width: 20rpx;
+    height: 20rpx;
     border-top: 4rpx solid #B1B1B1;
     border-right: 4rpx solid #B1B1B1;
     transform: rotate(45deg); /* 旋转45度 */

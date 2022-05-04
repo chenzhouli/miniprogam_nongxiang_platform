@@ -24,8 +24,6 @@
 .cart-fixbar .orders {padding:0 18rpx;}
 .cart-fixbar .allnum {font-size:28rpx;}
 .row_boxs {display:flex;align-items:center;}
-.goods-type {flex:1;}
-.goods-type text {padding-right:10rpx;}
 .section {padding-bottom:220rpx;}
 .footer {border-top:1rpx solid #eee;position:fixed;bottom:0;width:100%;display:flex;background:#fff;font-size:24rpx;height:55px;align-items:center;}
 .footer .ft_item {width:25%;text-align:center;}

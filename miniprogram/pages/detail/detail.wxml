@@ -1,6 +1,6 @@
 <!--pages/detail/detail.wxml-->
 
-<view>
+<view class="toppic">
     <image src="{{goods_img}}"/>
 </view>
 
