@@ -1,8 +1,16 @@
 <!--pages/mine/mine.wxml-->
 <!--个人信息-->
+<view class="load" wx:if="{{!havelogin}}">
 <i-card title="nickName" extra="个人信息" thumb="../../icon/logo.jpg" full="true">
     <view slot="content">个性签名：</view>
 </i-card>
+</view>
+
+<view class="load" wx:if="{{havelogin}}">
+<i-card title="{{nickName}}" extra="个人信息" thumb="{{avatarUrl}}" full="true">
+<view slot="content">个性签名：</view>
+</i-card>
+</view>
 
 <view class="navView">
   <view class="navItemView">

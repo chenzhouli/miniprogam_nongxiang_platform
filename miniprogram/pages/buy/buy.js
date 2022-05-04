@@ -6,52 +6,24 @@ Page({
      */
     data: {
         topImgs:[],
+        goods_info:[{}],
+        haveGetRecord:false, //是否有>=1个商品
         /**  * 页面配置  */
     winWidth: 0,
     winHeight: 0,
     // tab切换  
     currentTab: 0,
-    
-          dataList: [{
-            goods_id: 1,
-            goods_title: '商品标题1',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '60'
-          }, {
-            goods_id: 2,
-            goods_title: '商品标题2',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '70'
-          }, {
-            goods_id: 3,
-            goods_title: '商品标题3',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '80'
-          }, {
-            goods_id: 4,
-            goods_title: '商品标题4',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '90'
-          }, {
-            goods_id: 5,
-            goods_title: '商品标题5',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '110'
-          }],
-        },
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
         this.getTopImgs();
+        this.getgoods_info();
     },
         //获取顶部轮播图
-        getTopImgs(){
+    getTopImgs(){
             wx.cloud.database().collection("buy_toppic").get()
               .then(res =>{
                   console.log('请求成功',res)
@@ -73,6 +45,29 @@ Page({
               }
             })
     },
+
+    //获取商品
+    getgoods_info(){
+      wx.cloud.callFunction({
+        name: 'quickstartFunctions',
+        config: {
+          env: this.data.envId
+        },
+        data: {
+          type: 'selectRecord'
+        }
+      }).then((resp) => {
+        console.log('请求成功',resp)
+        this.setData({
+          haveGetRecord: true,
+          goods_info: resp.result.data
+        });
+       wx.hideLoading();
+     }).catch(resp =>{
+      console.log('请求失败',resp)
+     });
+    },
+
     binbuycar(){
         wx.navigateTo({
             url: '../../pages/buy_car/buy_car',

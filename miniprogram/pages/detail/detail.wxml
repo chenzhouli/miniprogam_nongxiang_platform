@@ -1,7 +1,7 @@
 <!--pages/detail/detail.wxml-->
 
 <view>
-    <image src="{{phptoIamge}}"/>
+    <image src="{{goods_img}}"/>
 </view>
 
 <scroll-view scroll-y="true">

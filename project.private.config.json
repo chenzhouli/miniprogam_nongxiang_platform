@@ -29,6 +29,12 @@
                     "scene": null
                 },
                 {
+                    "name": "pages/selectgoods/index",
+                    "pathName": "pages/selectgoods/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
                     "name": "pages/sumRecordResult/index",
                     "pathName": "pages/sumRecordResult/index",
                     "query": "",

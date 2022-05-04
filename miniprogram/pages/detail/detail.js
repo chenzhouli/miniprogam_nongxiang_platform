@@ -5,63 +5,56 @@ Page({
      * 页面的初始数据
      */
     data: {
+        id:"",
         goods_img:"",//匹配的数据
         goods_title:"",
         goods_xiaoliang:"",
         goods_price:"",
         detailImg:"",
-        dataList: [{
-            goods_id: 1,
-            goods_title: '商品标题1',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '60'
-          }, {
-            goods_id: 2,
-            goods_title: '商品标题2',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '70'
-          }, {
-            goods_id: 3,
-            goods_title: '商品标题3',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '80'
-          }, {
-            goods_id: 4,
-            goods_title: '商品标题4',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '90'
-          }, {
-            goods_id: 5,
-            goods_title: '商品标题5',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '110'
-          }],
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-            // options.id 就是首页传过来的id，接下来循环找到id所匹配的数据就可以进行渲染啦！
-    this.data.dataList.forEach(item => {
-        if (options.goods_id == item.goods_id) {
-          this.setData({
-            goods_img:item.goods_img,
-            goods_title:item.goods_title,
-            goods_price:item.goods_price,
-            goods_xiaoliang:item.goods_xiaoliang
-          })
-        }
+      // options.id 就是首页传过来的id，接下来循环找到id所匹配的数据就可以进行渲染啦！
+      // wx.showLoading({
+      // title: '数据加载中...'
+      // });
+
+      //console.log(options.goods_id);
+      this.setData({
+        id:options.goods_id
       })
+
+      wx.cloud.callFunction({
+        name: 'quickstartFunctions',
+        config: {
+          env: this.data.envId
+        },
+        data: {
+          type: 'selectgoods',
+          id: options.goods_id
+        }
+      }).then((resp) => {
+        console.log('请求成功',resp);
+        //console.log(resp.result.data[0]);
+
+        this.setData({
+          goods_img:resp.result.data[0].image,
+          goods_title:resp.result.data[0].name,
+          goods_price:resp.result.data[0].price,
+          goods_xiaoliang:resp.result.data[0].sale
+        });
+        console.log('成功了吗',goods_img,goods_title,goods_price,goods_xiaoliang);
+        wx.hideLoading();
+      }).catch(resp =>{
+        console.log('请求失败',resp)
+      });
     },
     //加入购物车
-    
-        // 跳到购物车
+
+    // 跳到购物车
     binbuycar() {
     wx.navigateTo({
       url: '../buy_car/buy_car',

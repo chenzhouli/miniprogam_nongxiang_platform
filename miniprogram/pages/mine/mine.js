@@ -6,8 +6,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        userInfo:{}
-
+        nickName:"",
+        avatarUrl:"",
+        havelogin:true
     },
     bind_aboutus(){
         wx.navigateTo({
@@ -23,6 +24,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        this.setData({
+            avatarUrl:options.avatarUrl,
+            nickName:options.nickName
+        })
 
     },
 
@@ -38,6 +43,18 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        let userInfo = wx.getStorageSync('userInfo')
+        if(userInfo){
+            this.setData({
+                avatarUrl:userInfo.avatarUrl,
+                nickName:userInfo.nickName,
+                havelogin:true
+            })
+        }else{
+                 this.setData({
+                 havelogin:false
+                 }) 
+            }
 
     },
 
