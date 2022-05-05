@@ -38,7 +38,25 @@ data-current="0" bindtap='swichNav'>
   </swiper-item>
 
   <swiper-item>
-    <view>aaa</view>
+    <view>
+        <view class='list'>
+  <block wx:for='{{dingdanlist}}' wx:key="_id" wx:for-item="item">
+  <view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
+      <view class='img'>
+        <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
+      </view>
+      <view class='info'>
+        <view class='title'>{{item.name}}</view>
+        <view class='num'>x{{item.num}}</view>
+        <text class='price'>￥{{item.price}}</text>
+        
+      </view>
+      <view class='clear'></view>
+  </view>
+  </block>
+</view>
+    
+    </view>
   </swiper-item>
 
   <swiper-item>

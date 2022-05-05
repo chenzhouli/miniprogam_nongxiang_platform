@@ -50,11 +50,6 @@ Page({
       hideShopPopup: true
     })  
   },
-  tobuy: function () {
-    this.setData({
-      hideShopPopup: false,
-    })
-  },
 
     /**
      * 生命周期函数--监听页面加载
@@ -78,7 +73,8 @@ Page({
         },
         data: {
           type: 'selectgoods',
-          id: options.goods_id
+          id: options.goods_id,
+          index:'merchandise_info'
         }
       }).then((resp) => {
         console.log('请求成功',resp);
@@ -119,7 +115,7 @@ Page({
       }).catch(resp =>{ 
         console.log('加入失败',resp) 
       }); 
-      this.binbuycar();
+      //this.binbuycar();
     }, 
 
     // 跳到购物车
@@ -130,10 +126,35 @@ Page({
   },
   //立即购买
   immeBuy() {
-      wx.navigateTo({
-        url: '../pay/pay',
-      })
+    this.update_dingdan();
+    wx.navigateTo({
+      url: '../pay/pay',
+    })
   },
+
+  update_dingdan(){
+    wx.cloud.callFunction({ 
+      name: 'quickstartFunctions', 
+      config: { 
+        env: this.data.envId 
+      }, 
+      data: { 
+        type: 'add_dingdan', 
+        id:this.data.id,
+        num:this.data.num,
+        image:this.data.goods_img,
+        price:this.data.goods_price,
+        sale:this.data.goods_xiaoliang,
+        name:this.data.goods_title,
+        flag:0
+      } 
+    }).then((resp) => { 
+      console.log('更新成功',resp) 
+    }).catch(resp =>{ 
+      console.log('更新失败',resp) 
+    }); 
+  },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

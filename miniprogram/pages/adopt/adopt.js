@@ -8,39 +8,9 @@ Page({
     /**  * 页面配置  */
     winWidth: 0,
     winHeight: 0,
-    
-          dataList: [{
-            tudi_id: 1,
-            tudi_title: '商品标题1',
-            tudi_img: '../../icon/logo.jpg',
-            tudi_xiaoliang: '0',
-            tudi_price: '60'
-          }, {
-            tudi_id: 1,
-            tudi_title: '商品标题2',
-            tudi_img: '../../icon/logo.jpg',
-            tudi_xiaoliang: '0',
-            tudi_price: '70'
-          }, {
-            tudi_id: 1,
-            tudi_title: '商品标题3',
-            tudi_img: '../../icon/logo.jpg',
-            tudi_xiaoliang: '0',
-            tudi_price: '80'
-          }, {
-            tudi_id: 1,
-            tudi_title: '商品标题4',
-            tudi_img: '../../icon/logo.jpg',
-            tudi_xiaoliang: '0',
-            tudi_price: '90'
-          }, {
-            tudi_id: 1,
-            tudi_title: '商品标题5',
-            tudi_img: '../../icon/logo.jpg',
-            tudi_xiaoliang: '0',
-            tudi_price: '110'
-          }],
+    landlist:[{}]
     },
+    
     bind_detail:function(e){
         let tudi_id=e.currentTarget.dataset.tudi_id //获取点击产品时拿到的id，就是data-id传过来的值
         // wx.navigateTo跳转页面的方法
@@ -64,9 +34,33 @@ Page({
             });
           }
         });
-
+        this.getland_info();
     },
+    
+    getland_info(){
+      wx.showLoading({
+        title: '数据加载中...'
+        });
 
+      wx.cloud.callFunction({
+        name: 'quickstartFunctions',
+        config: {
+          env: this.data.envId
+        },
+        data: {
+          type: 'selectAllland',
+        }
+      }).then((resp) => {
+        console.log('请求成功',resp)
+        this.setData({
+          //haveGetRecord: true,
+          landlist: resp.result.data
+        });
+       wx.hideLoading();
+     }).catch(resp =>{
+      console.log('请求失败',resp)
+     });
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

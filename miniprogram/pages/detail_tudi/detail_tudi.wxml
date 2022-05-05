@@ -8,6 +8,10 @@
     <text class="title">{{tudi_title}}</text>
     <view id="onlineView">
     <image src="../../icon/daohang.png"></image>
+    <text>面积：{{tudi_area}}</text>
+    </view>
+    <view id="onlineView">
+    <image src="../../icon/daohang.png"></image>
     <text>地址：{{tudi_add}}</text>
     </view>
     <view id="onlineView">

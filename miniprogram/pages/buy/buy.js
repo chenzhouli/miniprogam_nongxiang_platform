@@ -6,7 +6,8 @@ Page({
      */
     data: {
         topImgs:[],
-        goods_info:[{}],
+        goods_info_price:[{}],
+        goods_info_sale:[{}],
         haveGetRecord:false, //是否有>=1个商品
         /**  * 页面配置  */
     winWidth: 0,
@@ -47,24 +48,48 @@ Page({
 
     //获取商品
     getgoods_info(){
+      wx.showLoading({
+        title: '数据加载中...'
+        });
       wx.cloud.callFunction({
         name: 'quickstartFunctions',
         config: {
           env: this.data.envId
         },
         data: {
-          type: 'selectRecord'
+          type: 'selectAllgoods',
+          index:'price'
         }
       }).then((resp) => {
         console.log('请求成功',resp)
         this.setData({
           haveGetRecord: true,
-          goods_info: resp.result.data
+          goods_info_price: resp.result.data
         });
        wx.hideLoading();
      }).catch(resp =>{
       console.log('请求失败',resp)
      });
+
+     wx.cloud.callFunction({
+      name: 'quickstartFunctions',
+      config: {
+        env: this.data.envId
+      },
+      data: {
+        type: 'selectAllgoods',
+        index:'sale'
+      }
+    }).then((resp) => {
+      console.log('请求成功',resp)
+      this.setData({
+        haveGetRecord: true,
+        goods_info_sale: resp.result.data
+      });
+     wx.hideLoading();
+   }).catch(resp =>{
+    console.log('请求失败',resp)
+   });
     },
 
     binbuycar(){

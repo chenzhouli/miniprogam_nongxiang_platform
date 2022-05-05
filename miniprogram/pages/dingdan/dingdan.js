@@ -6,7 +6,7 @@ Page({
      */
     data: {
         topImgs:[],
-        goods_info:[{}],
+        dingdanlist:[{}],
 
      // tab切换  
     currentTab: 0,
@@ -16,21 +16,55 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        this.getdingdan();
     },
 
-        /**  * 点击tab切换  */
-        swichNav: function (e) {
-            var that = this;
-            if (this.data.currentTab === e.target.dataset.current) {
-              return false;
-            } else {
-              that.setData({
-                currentTab: e.target.dataset.current
-              })
-            }
-        },
+    getdingdan(){
+      wx.showLoading({
+        title: '数据加载中...'
+        });
 
+      wx.cloud.callFunction({
+        name: 'quickstartFunctions',
+        config: {
+          env: this.data.envId
+        },
+        data: {
+          type: 'getcart',
+          index:'dingdan'
+        }
+      }).then((resp) => {
+        console.log('请求成功',resp)
+        this.setData({
+          //haveGetRecord: true,
+          dingdanlist: resp.result.data
+        });
+       wx.hideLoading();
+     }).catch(resp =>{
+      console.log('请求失败',resp)
+     });
+    },
+
+    /**  * 点击tab切换  */
+    swichNav: function (e) {
+        var that = this;
+        if (this.data.currentTab === e.target.dataset.current) {
+          return false;
+        } else {
+          that.setData({
+            currentTab: e.target.dataset.current
+          })
+        }
+    },
+    
+    bind_detail:function(e){
+      let goods_id=e.currentTarget.dataset.goods_id //获取点击产品时拿到的id，就是data-id传过来的值
+      // wx.navigateTo跳转页面的方法
+      //URL是传递的是详情页的路径，把id拼接传过去就可以啦
+      wx.navigateTo({
+          url: "../detail/detail?goods_id="+goods_id,
+      })
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -58,7 +92,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
-
+      
     },
 
     /**

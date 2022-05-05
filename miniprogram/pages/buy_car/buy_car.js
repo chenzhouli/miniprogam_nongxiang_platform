@@ -10,18 +10,6 @@ Page({
         haveGetcart: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         cartlist:[{}],
-        // slideProductList: [
-        //   {
-        //     id:1,
-        //     name: 'xxxxx',
-        //     url: "../../icon/logo.jpg",
-        //     price: "xx",
-        //     select: "circle",
-        //     num: "1",
-        //     code: "0001",
-        //     amount: 500
-        //   },
-        // ],
         allSelect: "circle",
         num: 0,
         count: 0,
@@ -34,17 +22,36 @@ Page({
         var that = this
         var index = e.currentTarget.dataset.index
         var select = e.currentTarget.dataset.select
-    
+        //判断要不要勾选全选按钮
+        for (var i = 0; i < that.data.cartlist.length; i++) {
+          if(i != index){
+            if(that.data.cartlist[i].select == "circle"){
+              break;
+            }
+          }
+        }
+
         if (select == "circle") {
           var stype = "success"
+          if(i == that.data.cartlist.length){
+            this.setData({
+              allSelect: "success"  //勾上
+            })
+          }
         } else {
           var stype = "circle"
+          if(i == that.data.cartlist.length){
+            this.setData({
+              allSelect: "circle"  //不勾上
+            })
+          }
         }
         var newList = that.data.cartlist
         newList[index].select = stype
         that.setData({
           cartlist: newList
         })
+        
         that.countNum()
         that.count()
       },
@@ -53,7 +60,7 @@ Page({
     var that = this
     var allSelect = e.currentTarget.dataset.select //先判断是否选中
     var newList = that.data.cartlist
-    console.log(newList)
+    //console.log(newList)
     if (allSelect == "circle") {
       for (var i = 0; i < newList.length; i++) {
         newList[i].select = "success"
@@ -87,6 +94,9 @@ Page({
         //   goodsNum:num,
         //   cartlist: newList
         // })
+        wx.showLoading({
+          title: '数据加载中...'
+          });
 
         console.log('e',e); 
         wx.cloud.callFunction({ 
@@ -106,6 +116,7 @@ Page({
           this.setData({ 
             cartlist: resp.result.data 
           }); 
+          wx.hideLoading();
         }).catch(resp =>{ 
           console.log('请求失败',resp) 
         }); 
@@ -129,6 +140,10 @@ Page({
         //   goodsNum: num,
         //   slideProductList: newList
         // })
+        wx.showLoading({
+          title: '数据加载中...'
+          });
+
         wx.cloud.callFunction({ 
           name: 'quickstartFunctions', 
           config: { 
@@ -146,6 +161,7 @@ Page({
           this.setData({ 
             cartlist: resp.result.data 
           }); 
+          wx.hideLoading();
         }).catch(resp =>{ 
           console.log('请求失败',resp) 
         }); 
@@ -204,6 +220,7 @@ Page({
         }, 
         data: { 
           type: 'getcart', 
+          index:'merchandise_cart'
         } 
       }).then((resp) => { 
         console.log('请求成功',resp) 
@@ -217,10 +234,68 @@ Page({
     }, 
 
     bindacount(){
+      if(this.data.num==0){
+        wx.showToast({
+          title: '暂无商品！',
+          icon: 'success',
+          duration: 2000
+        });
+      }else{
+        this.update_dingdan(); //更新订单
+        this.update_cart();  //更新购物车
         wx.navigateTo({
             url: '../../pages/pay/pay',
           })
+      }
     },
+
+    update_dingdan(){
+      var that = this
+      var newList = that.data.cartlist
+      for (var i = 0; i < newList.length; i++) {
+        if (newList[i].select == "success") {
+          wx.cloud.callFunction({ 
+            name: 'quickstartFunctions', 
+            config: { 
+              env: this.data.envId 
+            }, 
+            data: { 
+              type: 'add_dingdan', 
+              id:newList[i]._id,
+              flag:1
+            } 
+          }).then((resp) => { 
+            console.log('更新成功',resp) 
+          }).catch(resp =>{ 
+            console.log('更新失败',resp) 
+          }); 
+        }
+      }
+    },
+
+    update_cart(){
+      var that = this
+      var newList = that.data.cartlist
+      for (var i = 0; i < newList.length; i++) {
+        if (newList[i].select == "success"){
+          wx.cloud.callFunction({ 
+            name: 'quickstartFunctions', 
+            config: { 
+              env: this.data.envId 
+            }, 
+            data: { 
+              type: 'dele_cart', 
+              id:newList[i]._id,
+            } 
+          }).then((resp) => { 
+            console.log('删除成功',resp) 
+          }).catch(resp =>{ 
+            console.log('删除失败',resp) 
+          }); 
+        }
+      }
+    },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

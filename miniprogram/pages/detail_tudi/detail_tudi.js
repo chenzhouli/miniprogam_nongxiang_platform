@@ -18,16 +18,68 @@ Page({
     },
       //选择认养
   immeBuy() {
-    wx.navigateTo({
-      url: '../pay/pay',
-    })
+    // wx.navigateTo({
+    //   url: '../pay/pay',
+    // })
+    wx.cloud.callFunction({ 
+      name: 'quickstartFunctions', 
+      config: { 
+        env: this.data.envId 
+      }, 
+      data: { 
+        type: 'addmyland', 
+        id:this.data.id 
+      } 
+    }).then((resp) => { 
+      console.log('请求成功',resp); 
+      wx.showToast({ 
+        title: '认养成功', 
+        icon: 'success', 
+        duration: 2000 
+      }); 
+    }).catch(resp =>{ 
+      console.log('已认养，请勿重复操作',resp) 
+    }); 
 },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+      wx.showLoading({
+        title: '数据加载中...'
+        });
 
+      this.setData({
+        id:options.tudi_id
+      })
+
+      wx.cloud.callFunction({
+        name: 'quickstartFunctions',
+        config: {
+          env: this.data.envId
+        },
+        data: {
+          type: 'selectgoods',
+          id: options.tudi_id,
+          index:'empty_land'
+        }
+      }).then((resp) => {
+        console.log('请求成功',resp);
+        //console.log(resp.result.data[0]);
+
+        this.setData({
+          tudi_img:resp.result.data[0].image,
+          tudi_title:resp.result.data[0].name,
+          tudi_price:resp.result.data[0].price,
+          tudi_add:resp.result.data[0].address,
+          tudi_chra:resp.result.data[0].chra,
+          tudi_area:resp.result.data[0].area
+        });
+        wx.hideLoading();
+      }).catch(resp =>{
+        console.log('请求失败',resp)
+      });
     },
 
     /**

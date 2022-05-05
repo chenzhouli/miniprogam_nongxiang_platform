@@ -24,7 +24,7 @@ data-current="0" bindtap='swichNav'>
 
     <view>
         <view class='list'>
-  <block wx:for='{{goods_info}}' wx:key="_id" wx:for-item="item">
+  <block wx:for='{{goods_info_price}}' wx:key="_id" wx:for-item="item">
   <view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
       <view class='img'>
         <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
@@ -37,12 +37,29 @@ data-current="0" bindtap='swichNav'>
       <view class='clear'></view>
   </view>
   </block>
-</view>
-    
+        </view>
     </view>
-  </swiper-item>
+
+</swiper-item>
+
   <swiper-item>
-    <view>aaa</view>
+    <view>
+        <view class='list'>
+  <block wx:for='{{goods_info_sale}}' wx:key="_id" wx:for-item="item">
+  <view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
+      <view class='img'>
+        <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
+      </view>
+      <view class='info'>
+        <view class='title'>{{item.name}}</view>
+        <view class='price'>￥{{item.price}}</view>
+        <view class='num'>销量{{item.sale}}</view>
+      </view>
+      <view class='clear'></view>
+  </view>
+  </block>
+        </view>
+    </view>
   </swiper-item>
 </swiper>
 
