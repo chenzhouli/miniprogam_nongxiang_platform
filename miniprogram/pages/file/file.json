@@ -1,6 +1,5 @@
 {
     "usingComponents": {
-        "i-input": "../../dist/panel/index",
         "UpImgs":"../../dist/upImgs/upImgs"
     },
     "navigationBarTitleText": "闲地利用"

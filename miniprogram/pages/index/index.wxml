@@ -10,11 +10,15 @@
 </view>
 
 <view class="intro"><text>农园玩乐攻略</text></view>
-<!--滑动图-->
-<scroll-view class="srcolbox" scroll-x	scroll-with-animation='true'>
-  <view class="item" wx:for="{{text}}" wx:key="_id">
-    <image mode="widthFix" src="{{item.imgUrl}}"></image>
-    <text>{{itrm.text}}</text>
-  </view>
+
+<scroll-view scroll-x="true"> 
+          <view class="ad_img_item">
+            <view wx:for="{{text}}"  wx:key="key">
+              <image class="item_img" mode='aspectFill' src="{{item}}"></image>
+            </view>
+          </view>
 </scroll-view>
+
+
+
 
