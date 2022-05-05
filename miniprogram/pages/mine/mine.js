@@ -22,7 +22,7 @@ Page({
     },
     bind_cart(){
         wx.navigateTo({
-            url: '../../pages/buy_car/buycar'
+            url: '../../pages/dingdan/dingdan'
           })
     },
 

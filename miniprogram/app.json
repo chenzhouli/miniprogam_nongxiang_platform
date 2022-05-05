@@ -15,7 +15,8 @@
     "pages/detail/detail",
     "pages/pay/pay",
     "pages/confirm/confirm",
-    "pages/detail_tudi/detail_tudi"
+    "pages/detail_tudi/detail_tudi",
+    "pages/dingdan/dingdan"
   ],
   "window":{
     "backgroundTextStyle":"dark",

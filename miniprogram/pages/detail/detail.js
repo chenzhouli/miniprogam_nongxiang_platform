@@ -12,7 +12,49 @@ Page({
         goods_price:"",
         detailImg:"",
         swiperList:[],
+        num:1,
+        hideShopPopup: true,
     },
+    
+  tobuy: function () {
+    this.setData({
+      hideShopPopup: false,
+    })
+  },
+
+  bindMinus: function () {
+    var num = this.data.num;
+    if (num > 1) {
+      num--;
+    }
+    // 只有大于一件的时候，才能normal状态，否则disable状态  
+    var minusStatus = num <= 1 ? 'disabled' : 'normal';
+    this.setData({
+      num: num,
+      minusStatus: minusStatus
+    });
+  },
+  /* 点击加号 */
+  bindPlus: function () {
+    var num = this.data.num;
+    num++;
+    var minusStatus = num < 1 ? 'disabled' : 'normal';
+    this.setData({
+      num: num,
+      minusStatus: minusStatus
+    });
+  },
+  /* 关闭购买页面 */
+  closePopupTap:function(){
+    this.setData({
+      hideShopPopup: true
+    })  
+  },
+  tobuy: function () {
+    this.setData({
+      hideShopPopup: false,
+    })
+  },
 
     /**
      * 生命周期函数--监听页面加载
@@ -22,6 +64,7 @@ Page({
       wx.showLoading({
       title: '数据加载中...'
       });
+      
 
       //console.log(options.goods_id);
       this.setData({
@@ -76,6 +119,7 @@ Page({
       }).catch(resp =>{ 
         console.log('加入失败',resp) 
       }); 
+      this.binbuycar();
     }, 
 
     // 跳到购物车

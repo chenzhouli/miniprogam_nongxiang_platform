@@ -24,10 +24,50 @@
 <view class="detail-nav">
   <view class="line_nav"></view>
   <button class="button-green"  bindtap="addcart" formType="submit">加入购物车</button>
-  <button class="button-red" bindtap="immeBuy" formType="submit">立即购买</button>
+  <button class="button-red" bindtap="tobuy" formType="submit">立即购买</button>
 </view>
+
+
+  <!--二级购买详情-->
+  <view class="show-popup" hidden="{{hideShopPopup}}">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents">
+      <view class="pop-goods-info">
+        <view class="pop-img-box">
+          <image src="{{goods_img}}" class="goods-thumbnail" />
+        </view>
+        <view class="pop-goods-des">
+          <view class="pop-goods-title">{{goods_title}}</view>
+        </view>
+        <view class="pop-goods-close" >
+            <icon
+            type="clear"
+            size="23"
+            color="red"
+            bindtap="closePopupTap"
+              > 
+            </icon>
+        </view>
+      </view>
+      <view class="buy-num-box">
+        <view class="num-label">购买数量</view>
+        <view class="num-box">
+          <view class="num-jian" bindtap="bindMinus">-</view>
+          <view class="num-input">
+            <input type="number" value="{{num}}" />
+          </view>
+          <view class="num-jia" bindtap="bindPlus">+</view>
+        </view>
+      </view>
+      <view class="popup-join-btn" data-name="{{goods_title}}" data-price="{{goods_price}}" bindtap="immeBuy">
+        立即购买
+      </view>
+    </view>
+  </view>
+
 
 <!--购物车-->
 <view id="askView" bindtap="binbuycar">
   <image src="../../icon/gouwuchexuanzhong.png"></image>
 </view>
+
