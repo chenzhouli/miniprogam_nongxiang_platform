@@ -218,7 +218,7 @@ Page({
 
     bindacount(){
         wx.navigateTo({
-            url: '../../pages/count/count',
+            url: '../../pages/pay/pay',
           })
     },
     /**

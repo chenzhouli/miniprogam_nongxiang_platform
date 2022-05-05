@@ -5,19 +5,24 @@ Page({
      * 页面的初始数据
      */
     data: {
-
-
+    consigneeName: "", //收货人姓名
+    phone: "",//电话
+    detailedAddress: "",//地址
     },
 
     
-      confirm(){
-      wx.showToast({
-              title: '购买成功',
-              icon: 'success',
-              duration: 2000
-            })
-      },
 
+      binpay(){
+        wx.showToast({
+            title: '购买成功',
+            icon: 'success',
+            duration: 2000
+          });
+        setTimeout(function(){
+        wx.navigateTo({
+          url: '../../pages/dingdan/dingdan',
+        })},2000)
+      },
 
     /**
      * 生命周期函数--监听页面加载

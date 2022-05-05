@@ -1,3 +1,53 @@
-<!--pages/pay/pay.wxml-->
+<view class="redact-address">
+  <view class="possess-layout">
+    <view class="mains">
+      <view class="address-msg">
+        <view class="item-msg">收货人</view>
+        <view class="section">
+          <input type="text" placeholder="请填写收货人姓名" value="{{consigneeName}}" bindblur="consigneeNameInput" placeholder-class="phcolor"></input>
+        </view>
+      </view>
+      <view class="address-msg">
+        <view class="item-msg">手机号码</view>
+        <view class="section">
+          <input type="number" placeholder="请填写收货人手机号码" value="{{phone}}" maxlength="11" bindblur="phoneInput" placeholder-class="phcolor"></input>
+        </view>
+      </view>
 
+      <view class="address-msg">
+        <view class="item-msg">详细地址</view>
+        <view class="section">
+          <input type="text" placeholder="街道、楼牌号等" value="{{detailedAddress}}" bindblur="detailedAddressInput" placeholder-class="phcolor"></input>
+        </view>
+        <view class="address-rights" bindtap='select'>
+          <image src="../../icon/daohang.png"></image>
+          <view>定位</view>
+        </view>
+      </view>
 
+    </view>
+  </view>
+</view>
+
+<view>
+        <view class='list'>
+  <block wx:for='{{goods_info}}' wx:key="_id" wx:for-item="item">
+  <view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
+      <view class='img'>
+        <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
+      </view>
+      <view class='info'>
+        <view class='title'>{{item.name}}</view>
+        <view class='num'>x{{item.num}}</view>
+        <text class='price'>￥{{item.price}}</text>
+        
+      </view>
+      <view class='clear'></view>
+  </view>
+  </block>
+</view>
+    
+    </view>
+ 
+<view class="btn" bindtap="binpay">付款</view>
+    
