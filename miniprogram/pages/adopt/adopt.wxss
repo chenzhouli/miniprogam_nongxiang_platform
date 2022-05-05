@@ -1,22 +1,4 @@
- 
 
-.on{ 
-color: #da7c0c;  
-border-bottom: 5rpx solid #da7c0c;
-}  
-.swiper-box{ 
-display: block; height: 100%; width: 100%; overflow: hidden; 
-}  
-.swiper-box view{  
-    text-align: center;  
-}
-.clear{
-    clear: both;
-    overflow: hidden;
-  }
-  navigator{
-    display:inline;
-  }
   .list{
     margin-top:10px;
   }

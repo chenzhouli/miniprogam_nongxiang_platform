@@ -1,0 +1,39 @@
+<!--pages/detail_tudi/detail_tudi.wxml-->
+<view class="toppic">
+    <image src="{{tudi_img}}"/>
+</view>
+
+<scroll-view scroll-y="true">
+  <view class="detail">
+    <text class="title">{{tudi_title}}</text>
+    <view id="onlineView">
+    <image src="../../icon/daohang.png"></image>
+    <text>地址：{{tudi_add}}</text>
+    </view>
+    <view id="onlineView">
+    <image src="../../icon/biaoqian.png"></image>
+    <text>适种产物：{{tudi_chra}}</text>
+    </view>
+    <view id="onlineView">
+    <image src="../../icon/dingdan.png"></image>
+    <text>会员费详情：{{tudi_price}}</text>  
+    <view>
+    <text>土地详情：</text>
+    </view>
+    </view>
+  </view>
+  <!-- sku选择 -->
+
+  <block wx:for-items="{{detailImg}}" wx:key="name">
+    <image class="image_detail" src="{{item}}" />
+  </block>
+  <view class="temp"></view>
+</scroll-view>
+
+<!-- 底部悬浮栏 -->
+
+<view class="detail-nav">
+  <button class="button-red" bindtap="immeBuy" formType="submit">我要认养</button>
+</view>
+
+

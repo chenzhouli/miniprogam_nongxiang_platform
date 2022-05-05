@@ -6,7 +6,7 @@ Page({
      */
     data: {
         id:"",
-        goods_img:"",//匹配的数据
+        goods_img:"",
         goods_title:"",
         goods_xiaoliang:"",
         goods_price:"",

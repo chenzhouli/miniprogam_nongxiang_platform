@@ -15,7 +15,7 @@
     "pages/detail/detail",
     "pages/pay/pay",
     "pages/confirm/confirm",
-    "components/upImgs/upImgs"
+    "pages/detail_tudi/detail_tudi"
   ],
   "window":{
     "backgroundTextStyle":"dark",

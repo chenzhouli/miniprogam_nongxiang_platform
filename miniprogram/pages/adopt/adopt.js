@@ -10,38 +10,45 @@ Page({
     winHeight: 0,
     
           dataList: [{
-            goods_id: 1,
-            goods_title: '商品标题1',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '60'
+            tudi_id: 1,
+            tudi_title: '商品标题1',
+            tudi_img: '../../icon/logo.jpg',
+            tudi_xiaoliang: '0',
+            tudi_price: '60'
           }, {
-            goods_id: 1,
-            goods_title: '商品标题2',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '70'
+            tudi_id: 1,
+            tudi_title: '商品标题2',
+            tudi_img: '../../icon/logo.jpg',
+            tudi_xiaoliang: '0',
+            tudi_price: '70'
           }, {
-            goods_id: 1,
-            goods_title: '商品标题3',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '80'
+            tudi_id: 1,
+            tudi_title: '商品标题3',
+            tudi_img: '../../icon/logo.jpg',
+            tudi_xiaoliang: '0',
+            tudi_price: '80'
           }, {
-            goods_id: 1,
-            goods_title: '商品标题4',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '90'
+            tudi_id: 1,
+            tudi_title: '商品标题4',
+            tudi_img: '../../icon/logo.jpg',
+            tudi_xiaoliang: '0',
+            tudi_price: '90'
           }, {
-            goods_id: 1,
-            goods_title: '商品标题5',
-            goods_img: '../../icon/logo.jpg',
-            goods_xiaoliang: '0',
-            goods_price: '110'
+            tudi_id: 1,
+            tudi_title: '商品标题5',
+            tudi_img: '../../icon/logo.jpg',
+            tudi_xiaoliang: '0',
+            tudi_price: '110'
           }],
     },
-
+    bind_detail:function(e){
+        let tudi_id=e.currentTarget.dataset.tudi_id //获取点击产品时拿到的id，就是data-id传过来的值
+        // wx.navigateTo跳转页面的方法
+        //URL是传递的是详情页的路径，把id拼接传过去就可以啦
+        wx.navigateTo({
+            url: "../detail_tudi/detail_tudi?tudi_id="+tudi_id,
+        })
+    },
 
     /**
      * 生命周期函数--监听页面加载
