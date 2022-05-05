@@ -12,9 +12,9 @@
 </i-card>
 </view>
 
-<view class="navView">
+<view class="navView" >
   <view class="navItemView">
-    <image src="../../icon/dingdan.png"></image>
+    <image src="../../icon/dingdan.png" bindtap="bind_tudi"></image>
     <text>我的土地</text>
   </view>
   <view class="navItemView">
@@ -49,8 +49,4 @@
   <view class="arrow"></view>
 </view>
 </view>
-<!--
-<i-card class="card" title="采摘小tip" extra="来自：" thumb="cloud://env-6g948tux97e332ca.656e-env-6g948tux97e332ca-1311388574/top_pic/5b06886004b3c9cb018290c15bd33e2a.jpeg">
-  		 <view slot="content" >那些你必须知道的蔬果采摘小技巧和注意事项.......</view>
-</i-card>
--->
+

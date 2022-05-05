@@ -1,21 +1,15 @@
-<!--pages/buy/buy.wxml-->
-<!--顶部轮播图-->
-<swiper class="swiper_1" indicator-dots autoplay circular >
-  <swiper-item wx:for="{{topImgs}}" wx:key="_id">
-    <image mode="widthFix" src="{{item.imgUrl}}"></image>
-  </swiper-item>
-</swiper>
-
-
-
 <view class="swiper-tab">
   <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" 
 data-current="0" bindtap='swichNav'>
-价格
+待收款
 </view>
   <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" 
 	data-current="1" bindtap="swichNav">
-销量
+待发货
+</view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" 
+	data-current="2" bindtap="swichNav">
+待收货
 </view>
 </view>
 
@@ -31,8 +25,9 @@ data-current="0" bindtap='swichNav'>
       </view>
       <view class='info'>
         <view class='title'>{{item.name}}</view>
-        <view class='price'>￥{{item.price}}</view>
-        <view class='num'>销量{{item.sale}}</view>
+        <view class='num'>x{{item.num}}</view>
+        <text class='price'>￥{{item.price}}</text>
+        
       </view>
       <view class='clear'></view>
   </view>
@@ -41,12 +36,14 @@ data-current="0" bindtap='swichNav'>
     
     </view>
   </swiper-item>
+
   <swiper-item>
     <view>aaa</view>
   </swiper-item>
+
+  <swiper-item>
+    <view>bbbb</view>
+  </swiper-item>
+  
 </swiper>
 
-<!--购物车-->
-<view id="askView" bindtap="binbuycar">
-  <image src="../../icon/gouwuchexuanzhong.png"></image>
-</view>

@@ -25,6 +25,11 @@ Page({
             url: '../../pages/dingdan/dingdan'
           })
     },
+    bind_tudi(){
+        wx.navigateTo({
+            url: '../../pages/mytudi/mytudi'
+          })
+    },
 
     /**
      * 生命周期函数--监听页面加载
