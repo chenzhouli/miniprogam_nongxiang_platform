@@ -1,12 +1,12 @@
 <!--pages/buy_car/buy_car.wxml-->
 <view class="product-container">
 	<view class="product-list" style='height:{{height}}px'>
-		<view class="product-item" wx:for="{{slideProductList}}" wx:for-index="index" wx:key='slideProductList'>
-			<slide-delete pid="{{item.id}}" bindaction="handleSlideDelete" wx:key='slideProductList'>
+		<view class="product-item" wx:for="{{cartlist}}" wx:for-index="index" wx:key='cartlist'>
+			<slide-delete pid="{{item.id}}" bindaction="handleSlideDelete" wx:key='cartlist'>
 				<view class="product-item-wrap">
 					<icon type="{{item.select}}" size="19" data-index="{{index}}" data-select="{{item.select}}" bindtap="change" color="red" />
 					<view class="product_img">
-						<image src="{{item.url}}" class='goods-img' mode="widthFix"></image>
+						<image src="{{item.image}}" class='goods-img' mode="widthFix"></image>
 					</view>
 					<view class="product-movable-item">
 						<view class="goods-name">{{item.name}}</view>

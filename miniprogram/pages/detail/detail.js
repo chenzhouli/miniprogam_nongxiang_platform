@@ -19,9 +19,9 @@ Page({
      */
     onLoad(options) {
       // options.id 就是首页传过来的id，接下来循环找到id所匹配的数据就可以进行渲染啦！
-      // wx.showLoading({
-      // title: '数据加载中...'
-      // });
+      wx.showLoading({
+      title: '数据加载中...'
+      });
 
       //console.log(options.goods_id);
       this.setData({
@@ -47,14 +47,37 @@ Page({
           goods_price:resp.result.data[0].price,
           goods_xiaoliang:resp.result.data[0].sale
         });
-        console.log('成功了吗',goods_img,goods_title,goods_price,goods_xiaoliang);
+        //console.log('成功了吗',this.data.goods_img,this.data.goods_title,this.data.goods_price,this.data.goods_xiaoliang);
         wx.hideLoading();
       }).catch(resp =>{
         console.log('请求失败',resp)
       });
     },
-    //加入购物车
     
+    //加入购物车
+    addcart(e){ 
+      console.log('商品',this.data.id); 
+      wx.cloud.callFunction({ 
+        name: 'quickstartFunctions', 
+        config: { 
+          env: this.data.envId 
+        }, 
+        data: { 
+          type: 'addcart', 
+          id:this.data.id 
+        } 
+      }).then((resp) => { 
+        console.log('请求成功',resp); 
+        wx.showToast({ 
+          title: '加入成功', 
+          icon: 'success', 
+          duration: 2000 
+        }); 
+      }).catch(resp =>{ 
+        console.log('加入失败',resp) 
+      }); 
+    }, 
+
     // 跳到购物车
     binbuycar() {
     wx.navigateTo({

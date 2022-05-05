@@ -23,7 +23,7 @@
 
 <view class="detail-nav">
   <view class="line_nav"></view>
-  <button class="button-green"  formType="submit">加入购物车</button>
+  <button class="button-green"  bindtap="addcart" formType="submit">加入购物车</button>
   <button class="button-red" bindtap="immeBuy" formType="submit">立即购买</button>
 </view>
 

@@ -7,74 +7,21 @@ Page({
     data: {
         goodsNum:'',
         userInfo: {},
-        hasUserInfo: false,
+        haveGetcart: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    
-        slideProductList: [
-          {
-            id:1,
-            name: 'xxxxx',
-            url: "../../icon/logo.jpg",
-            price: "xx",
-            select: "circle",
-            num: "1",
-            code: "0001",
-            amount: 500
-          },
-          {
-            id: 2,
-            name: "指环支架",
-            url: "../../icon/logo.jpg",
-            price: "19.9",
-            select: "circle",
-            code: "0002",
-            num: "1",
-            amount: 500
-          },
-          {
-            id: 3,
-            name: "新款平板电脑",
-            url: "../../icon/logo.jpg",
-            price: "100",
-            select: "circle",
-            code: "0003",
-            num: "1",
-            amount: 110
-          },
-          {
-            id: 4,
-            code: "0001",
-            name: "无人机",
-            url: "../../icon/logo.jpg",
-            price: "4999",
-            select: "circle",
-            code: "0004",
-            num: "1",
-            amount: 200
-          },
-          {
-            id: 5,
-            code: "0001",
-            name: "无人机",
-            url: "../../icon/logo.jpg",
-            price: "4999",
-            select: "circle",
-            code: "0004",
-            num: "1",
-            amount: 200
-          },
-          {
-            id: 6,
-            code: "0001",
-            name: "无人机",
-            url: "../../icon/logo.jpg",
-            price: "4999",
-            select: "circle",
-            code: "0004",
-            num: "1",
-            amount: 200
-          },
-        ],
+        cartlist:[{}],
+        // slideProductList: [
+        //   {
+        //     id:1,
+        //     name: 'xxxxx',
+        //     url: "../../icon/logo.jpg",
+        //     price: "xx",
+        //     select: "circle",
+        //     num: "1",
+        //     code: "0001",
+        //     amount: 500
+        //   },
+        // ],
         allSelect: "circle",
         num: 0,
         count: 0,
@@ -93,10 +40,10 @@ Page({
         } else {
           var stype = "circle"
         }
-        var newList = that.data.slideProductList
+        var newList = that.data.cartlist
         newList[index].select = stype
         that.setData({
-          slideProductList: newList
+          cartlist: newList
         })
         that.countNum()
         that.count()
@@ -105,7 +52,7 @@ Page({
   allSelect: function (e) {
     var that = this
     var allSelect = e.currentTarget.dataset.select //先判断是否选中
-    var newList = that.data.slideProductList
+    var newList = that.data.cartlist
     console.log(newList)
     if (allSelect == "circle") {
       for (var i = 0; i < newList.length; i++) {
@@ -119,50 +66,96 @@ Page({
       var select = "circle"
     }
     that.setData({
-      slideProductList: newList,
+      cartlist: newList,
       allSelect: select
     })
     that.countNum()
     that.count()
   },
+
     addtion: function (e) {//添加商品
         var that = this
         var index = e.currentTarget.dataset.index
-        var num = e.currentTarget.dataset.num
-        if (num < 99) { //默认峰值99件
-          num++
-        }
-        var newList = that.data.slideProductList
-        newList[index].num = num
-        that.setData({
-          goodsNum:num,
-          slideProductList: newList
-        })
+        //var num = e.currentTarget.dataset.num
+        var id = that.data.cartlist[index]._id
+        // if (num < 99) { //默认峰值99件
+        //   num++
+        // }
+        // var newList = that.data.slideProductList
+        // newList[index].num = num
+        // that.setData({
+        //   goodsNum:num,
+        //   cartlist: newList
+        // })
+
+        console.log('e',e); 
+        wx.cloud.callFunction({ 
+          name: 'quickstartFunctions', 
+          config: { 
+            env: this.data.envId 
+          }, 
+          data: { 
+            type: 'changenum', 
+            flag:0, 
+            id:id, 
+            // index:index, 
+            // num:num 
+          } 
+        }).then((resp) => { 
+          console.log('请求成功',resp) 
+          this.setData({ 
+            cartlist: resp.result.data 
+          }); 
+        }).catch(resp =>{ 
+          console.log('请求失败',resp) 
+        }); 
         that.countNum()
         that.count()
       },
       subtraction: function (e) {//减少商品
         var that = this
         var index = e.currentTarget.dataset.index
-        var num = e.currentTarget.dataset.num
-        var newList = that.data.slideProductList
+        var id = that.data.cartlist[index]._id
+        //var num = e.currentTarget.dataset.num
+        //var newList = that.data.slideProductList
         //当1件时，再次点击移除该商品
-        if (num == 1) {
-          newList.splice(index, 1)
-        } else {
-          num--
-          newList[index].num = num
-        }
-        that.setData({
-          goodsNum: num,
-          slideProductList: newList
-        })
+        // if (num == 1) {
+        //   newList.splice(index, 1)
+        // } else {
+        //   num--
+        //   newList[index].num = num
+        // }
+        // that.setData({
+        //   goodsNum: num,
+        //   slideProductList: newList
+        // })
+        wx.cloud.callFunction({ 
+          name: 'quickstartFunctions', 
+          config: { 
+            env: this.data.envId 
+          }, 
+          data: { 
+            type: 'changenum', 
+            flag:1, 
+            id:id, 
+            // index:index, 
+            // num:num 
+          } 
+        }).then((resp) => { 
+          console.log('请求成功',resp) 
+          this.setData({ 
+            cartlist: resp.result.data 
+          }); 
+        }).catch(resp =>{ 
+          console.log('请求失败',resp) 
+        }); 
         that.countNum()
         that.count()
       },
+
       countNum: function () { //计算数量
         var that = this
-        var newList = that.data.slideProductList
+        var newList = that.data.cartlist
         var allNum = 0
         for (var i = 0; i < newList.length; i++) {
           if (newList[i].select == "success") {
@@ -177,7 +170,7 @@ Page({
 
       count: function () {//计算金额方法
         var that = this
-        var newList = that.data.slideProductList
+        var newList = that.data.cartlist
         var newCount = 0
         for (var i = 0; i < newList.length; i++) {
           if (newList[i].select == "success") {
@@ -199,8 +192,30 @@ Page({
         this.setData({
           height:height
         })
+        this.getcartlist(); 
     },
     
+    //获得购物车数据库 
+    getcartlist(){ 
+      wx.cloud.callFunction({ 
+        name: 'quickstartFunctions', 
+        config: { 
+          env: this.data.envId 
+        }, 
+        data: { 
+          type: 'getcart', 
+        } 
+      }).then((resp) => { 
+        console.log('请求成功',resp) 
+        this.setData({ 
+          haveGetcart: true, 
+          cartlist: resp.result.data 
+        }); 
+      }).catch(resp =>{ 
+        console.log('请求失败',resp) 
+      }); 
+    }, 
+
     bindacount(){
         wx.navigateTo({
             url: '../../pages/count/count',

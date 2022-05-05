@@ -28,7 +28,7 @@
 </view>
 
 <view class="about">
-<view id="onlineView">
+<view id="onlineView" bindtap="bind_cart">
   <image src="../../icon/shoucang.png"></image>
   <text>我的订单</text>
   <!-- 右箭头实现 -->
