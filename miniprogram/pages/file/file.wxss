@@ -1,3 +1,4 @@
+
 .fb_content{
     display: flex;
     align-items: center;
@@ -41,7 +42,6 @@
     background-color: #e64340;
   }
   .fb_content {
-    background-color: #fff;
     margin-top: 20rpx;
     }
 
