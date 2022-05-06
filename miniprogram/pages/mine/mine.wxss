@@ -1,6 +1,6 @@
 /* pages/mine/mine.wxss */
 page{/*页面背景—————统一浅灰*/
-    background-color: #ededed;
+    background-color: #f1f1f1;
   }
   .navView{
     display: flex;  /* 应用flex布局 ，所有的子元素排在一行*/

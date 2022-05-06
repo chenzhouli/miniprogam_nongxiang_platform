@@ -1,28 +1,18 @@
-// pages/pay/pay.js
+// pages/like/like.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-    consigneeName: "", //收货人姓名
-    phone: "",//电话
-    detailedAddress: "",//地址
+      text:[
+        {img:"../../icon/5c2f114de6d323908267e5f1d4887073.jpeg",title:111},
+        {img:"../../icon/17a639263ae6ead0d92f36ef7b2ccb13.jpeg",title:222},
+        {img:"../../icon/169ebd7d9759ad58b68aa02b2954b68a.jpeg",title:333},
+        {img:"../../icon/biaoqian.png",title:444},
+        {img:"../../icon/daohang.png",title:555}]
+
     },
-
-    
-
-      binpay(){
-        wx.showToast({
-            title: '购买成功',
-            icon: 'success',
-            duration: 2000
-          });
-        setTimeout(function(){
-        wx.redirectTo({
-          url: '../../pages/dingdan/dingdan',
-        })},2000)
-      },
 
     /**
      * 生命周期函数--监听页面加载
@@ -42,6 +32,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+
     },
 
     /**

@@ -16,7 +16,9 @@
     "pages/confirm/confirm",
     "pages/detail_tudi/detail_tudi",
     "pages/dingdan/dingdan",
-    "pages/mytudi/mytudi"
+    "pages/mytudi/mytudi",
+    "pages/detail_txt/detail_txt",
+    "pages/like/like"
   ],
   "window":{
     "backgroundTextStyle":"dark",

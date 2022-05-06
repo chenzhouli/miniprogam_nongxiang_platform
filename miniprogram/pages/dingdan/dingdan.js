@@ -45,6 +45,12 @@ Page({
      });
     },
 
+    
+    bindChange: function (e) {
+        var that = this;
+        that.setData({ currentTab: e.detail.current });
+    },
+
     /**  * 点击tab切换  */
     swichNav: function (e) {
         var that = this;

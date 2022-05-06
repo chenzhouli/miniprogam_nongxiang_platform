@@ -6,26 +6,34 @@
     width: 100%;
     height: 450rpx;
     white-space: nowrap;
-    margin-top: 10px;
-  }
-   
- 
-.ad_img_item{
-    width: 100%;
-    height: 200rpx;
-    text-align: center;
-    display: flex;
-  }
-  .item_img{
-    width: 200rpx;
-    height: 200rpx;
-    padding-right: 20rpx;
+    margin-top: 20px;
   }
 
-.item {
-    background-color: rgb(226, 192, 192);
+  .item { 
+    width: 50%; 
+    height: 450rpx; 
+    display: inline-block; 
+    margin-right: 30rpx; 
+    border-radius: 10rpx; 
+    text-align: center;
+    flex-direction: column;
+    background-color: rgb(247, 247, 247);
+    border-radius: 15rpx;
+  } 
+  .item_img{
+    width: 100%;
+    height: 350rpx;
+    border-radius: 15rpx;
   }
-  
+
+  .item_text text{
+    padding-top: 10rpx;
+    display:block;
+    width:100%;
+    font-size:30rpx;
+    word-break: break-all;
+  }
+
 .intro{
     padding-left: 25rpx;
     padding-top: 40rpx;
@@ -45,3 +53,6 @@
     position: relative;
     width: 30%;
 }
+.temp {
+    height: 100rpx;
+  }

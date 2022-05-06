@@ -1,0 +1,10 @@
+<!--pages/like/like.wxml-->
+<view class="container">
+  <view class="item" wx:for="{{text}}" wx:key="key" bindtap="bindetail_txt">
+ <image class="item_img" mode='aspectFill' src="{{item.img}}"></image>
+               <view class="item_text">
+              <text>{{item.title}}</text>
+              </view>
+              <view class='temp'></view>
+          </view>
+</view>

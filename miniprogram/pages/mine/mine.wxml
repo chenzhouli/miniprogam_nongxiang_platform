@@ -22,7 +22,7 @@
     <text>我的出行</text>
   </view>
   <view class="navItemView">
-    <image src="../../icon/shoucang.png"></image>
+    <image src="../../icon/shoucang.png" bindtap="bindlike"></image>
     <text>我的收藏</text>
   </view>
 </view>

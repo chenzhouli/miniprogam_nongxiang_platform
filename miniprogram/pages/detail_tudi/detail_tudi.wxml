@@ -5,29 +5,32 @@
 
 <scroll-view scroll-y="true">
   <view class="detail">
+    <view class="container_tt">
     <text class="title">{{tudi_title}}</text>
+    </view>
+    <view class="container">
     <view id="onlineView">
-    <image src="../../icon/daohang.png"></image>
+    <image src="../../icon/daohang.png" mode="scaleToFill"></image>
     <text>面积：{{tudi_area}}</text>
     </view>
     <view id="onlineView">
-    <image src="../../icon/daohang.png"></image>
+    <image src="../../icon/daohang.png" mode="scaleToFill"></image>
     <text>地址：{{tudi_add}}</text>
     </view>
     <view id="onlineView">
-    <image src="../../icon/biaoqian.png"></image>
+    <image src="../../icon/biaoqian.png" mode="scaleToFill"></image>
     <text>适种产物：{{tudi_chra}}</text>
     </view>
     <view id="onlineView">
-    <image src="../../icon/dingdan.png"></image>
+    <image src="../../icon/dingdan.png" mode="scaleToFill"></image>
     <text>会员费详情：{{tudi_price}}</text>  
-    <view>
-    <text>土地详情：</text>
     </view>
+    </view>
+    <view id="onlineView">
+    <text>土地详情：</text>
     </view>
   </view>
   <!-- sku选择 -->
-
   <block wx:for-items="{{detailImg}}" wx:key="name">
     <image class="image_detail" src="{{item}}" />
   </block>
@@ -37,7 +40,44 @@
 <!-- 底部悬浮栏 -->
 
 <view class="detail-nav">
-  <button class="button-red" bindtap="immeBuy" formType="submit">我要认养</button>
+  <button class="button-red" bindtap="tobuy" formType="submit">我要认养</button>
 </view>
+
+<!--二级购买详情-->
+<view class="show-popup" hidden="{{hideShopPopup}}">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents">
+      <view class="pop-goods-info">
+        <view class="pop-img-box">
+          <image src="{{tudi_img}}" class="goods-thumbnail" />
+        </view>
+        <view class="pop-goods-des">
+          <view class="pop-goods-title">{{tudi_title}}</view>
+        </view>
+        <view class="pop-goods-close" >
+            <icon
+            type="clear"
+            size="23"
+            color="red"
+            bindtap="closePopupTap"
+              > 
+            </icon>
+        </view>
+      </view>
+      <view class="buy-num-box">
+        <view class="num-label">认养亩数</view>
+        <view class="num-box">
+          <view class="num-jian" bindtap="bindMinus">-</view>
+          <view class="num-input">
+            <input type="number" value="{{num}}" />
+          </view>
+          <view class="num-jia" bindtap="bindPlus">+</view>
+        </view>
+      </view>
+      <view class="popup-join-btn" data-name="{{tudi_title}}" data-price="{{tudi_price}}" bindtap="immeBuy">
+        立即认养
+      </view>
+    </view>
+  </view>
 
 

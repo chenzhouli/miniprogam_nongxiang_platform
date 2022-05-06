@@ -12,10 +12,45 @@ Page({
         detailImg:"",//详情照片
         tudi_add:"",//地址
         tudi_chra:"",//土地适中产物
-
+        hideShopPopup: true,
+        num:1,
         swiperList:[],
 
     },
+    tobuy: function () {
+        this.setData({
+          hideShopPopup: false,
+        })
+      },
+      bindMinus: function () {
+        var num = this.data.num;
+        if (num > 1) {
+          num--;
+        }
+        // 只有大于一件的时候，才能normal状态，否则disable状态  
+        var minusStatus = num <= 1 ? 'disabled' : 'normal';
+        this.setData({
+          num: num,
+          minusStatus: minusStatus
+        });
+      },
+      /* 点击加号 */
+      bindPlus: function () {
+        var num = this.data.num;
+        num++;
+        var minusStatus = num < 1 ? 'disabled' : 'normal';
+        this.setData({
+          num: num,
+          minusStatus: minusStatus
+        });
+      },
+      /* 关闭购买页面 */
+      closePopupTap:function(){
+        this.setData({
+          hideShopPopup: true
+        })  
+      },
+
       //选择认养
   immeBuy() {
     // wx.navigateTo({
@@ -40,6 +75,7 @@ Page({
     }).catch(resp =>{ 
       console.log('已认养，请勿重复操作',resp) 
     }); 
+
 },
 
     /**

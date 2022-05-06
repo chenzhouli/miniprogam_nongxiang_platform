@@ -11,11 +11,13 @@
 
 <view class="intro"><text>农园玩乐攻略</text></view>
 
-<scroll-view scroll-x="true"> 
-          <view class="ad_img_item">
-            <view wx:for="{{text}}"  wx:key="key">
-              <image class="item_img" mode='aspectFill' src="{{item}}"></image>
-            </view>
+<scroll-view class="srcolbox"  scroll-x="true" scroll-with-animation='true'> 
+<view class="item" wx:for="{{text}}" wx:key="key" bindtap="bindetail_txt">
+ <image class="item_img" mode='aspectFill' src="{{item.img}}"></image>
+               <view class="item_text">
+              <text>{{item.title}}</text>
+              </view>
+              <view class='temp'></view>
           </view>
 </scroll-view>
 

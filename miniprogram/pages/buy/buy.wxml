@@ -55,7 +55,7 @@ data-current="0" bindtap='swichNav'>
         <view class='price'>￥{{item.price}}</view>
         <view class='num'>销量{{item.sale}}</view>
       </view>
-      <view class='clear'></view>
+      <view class='temp'></view>
   </view>
   </block>
         </view>

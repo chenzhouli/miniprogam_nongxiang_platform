@@ -14,51 +14,48 @@ data-current="0" bindtap='swichNav'>
 </view>
 
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
-  <swiper-item>
+    <swiper-item>
 
-    <view>
-        <view class='list'>
-  <block wx:for='{{goods_info}}' wx:key="_id" wx:for-item="item">
-  <view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
-      <view class='img'>
-        <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
-      </view>
-      <view class='info'>
-        <view class='title'>{{item.name}}</view>
-        <view class='num'>x{{item.num}}</view>
-        <text class='price'>￥{{item.price}}</text>
-        
-      </view>
-      <view class='clear'></view>
+<view>
+    <view class='list'>
+<block wx:for='{{dingdanlist}}' wx:key="_id" wx:for-item="item">
+<view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
+  <view class='img'>
+    <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
   </view>
-  </block>
-</view>
-    
-    </view>
-  </swiper-item>
-
-  <swiper-item>
-    <view>
-        <view class='list'>
-  <block wx:for='{{dingdanlist}}' wx:key="_id" wx:for-item="item">
-  <view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
-      <view class='img'>
-        <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
-      </view>
-      <view class='info'>
-        <view class='title'>{{item.name}}</view>
-        <view class='num'>x{{item.num}}</view>
-        <text class='price'>￥{{item.price}}</text>
-        
-      </view>
-      <view class='clear'></view>
+  <view class='info'>
+    <view class='title'>{{item.name}}</view>
+    <view class='num'>x{{item.num}}</view>
+    <text class='price'>￥{{item.price}}</text>
   </view>
-  </block>
+  <view class='clear'></view>
 </view>
-    
+</block>
     </view>
-  </swiper-item>
+</view>
 
+</swiper-item>
+<swiper-item>
+
+<view>
+    <view class='list'>
+<block wx:for='{{dingdanlist}}' wx:key="_id" wx:for-item="item">
+<view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
+  <view class='img'>
+    <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
+  </view>
+  <view class='info'>
+    <view class='title'>{{item.name}}</view>
+    <view class='num'>x{{item.num}}</view>
+    <text class='price'>￥{{item.price}}</text>
+  </view>
+  <view class='clear'></view>
+</view>
+</block>
+    </view>
+</view>
+
+</swiper-item>
   <swiper-item>
     <view>bbbb</view>
   </swiper-item>

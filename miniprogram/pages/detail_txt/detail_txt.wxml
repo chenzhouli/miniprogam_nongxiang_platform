@@ -1,0 +1,30 @@
+<!--pages/detail_txt/detail_txt.wxml-->
+<view>
+  <view class='top-text'>
+    <text>正文标题</text>
+  </view>
+  <view class="divLine"></view>
+  <view>
+    <view class='content-text'>
+      <text>{{content}}</text>
+    </view>
+    <view class='image-container'>
+      <block wx:for="{{images}}" wx:for-item="item" wx:for-index="idx">
+        <view class='image-container'  data-imageUrl="{{item.imageUrl}}">
+          <image  wx:if="{{hadImage}}" class='image-item' src="{{item.imageUrl}}" mode='widthFix'></image>
+        </view>
+      </block>
+    </view>
+    <view class="txt">{{item.txt}}</view><!--正文-->
+    <view>
+      <text class='type-text'>类型：{{item.postType}}</text>
+      <text class='type-author'>作者：{{item.author}}</text>
+    </view>
+    <view><text class='type-date'>发布时间：{{item.date}}</text></view>
+      <view class='view-like' >
+      <image class='icon-like' src="{{addLike.url}}" bindtap="funLike"></image>
+      <text>点赞</text>
+      </view>
+  </view>
+</view>
+

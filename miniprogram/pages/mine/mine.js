@@ -30,6 +30,11 @@ Page({
             url: '../../pages/mytudi/mytudi'
           })
     },
+    bindlike(){
+      wx.navigateTo({
+        url: '../../pages/like/like',
+      })
+    },
 
     /**
      * 生命周期函数--监听页面加载

@@ -1,28 +1,33 @@
-// pages/pay/pay.js
+// pages/detail_txt/detail_txt.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-    consigneeName: "", //收货人姓名
-    phone: "",//电话
-    detailedAddress: "",//地址
+      images:[{}],
+      addLike:{add:false,url:"../../icon/xihuan.png"}//是否收藏、图标
+
     },
-
-    
-
-      binpay(){
-        wx.showToast({
-            title: '购买成功',
-            icon: 'success',
-            duration: 2000
-          });
-        setTimeout(function(){
-        wx.redirectTo({
-          url: '../../pages/dingdan/dingdan',
-        })},2000)
-      },
+    funLike:function(){
+      var add = this.data.addLike.add;
+    //   console.log(add);
+      if(add){
+          this.setData({
+              addLike:{
+                  add: false,
+                  url: '../../icon/xihuan.png'
+              }
+          })
+      }else{
+          this.setData({
+              addLike: {
+                  add: true,
+                  url: '../../icon/xihuan2.png'
+              }
+          })
+      }
+  },
 
     /**
      * 生命周期函数--监听页面加载
@@ -42,6 +47,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+
     },
 
     /**
