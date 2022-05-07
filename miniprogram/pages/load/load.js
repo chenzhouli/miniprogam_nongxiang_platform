@@ -34,8 +34,7 @@ Page({
 })
  },
  getUI(e) { //点击授权登录时产生的监听事件
-    app.globalData.userInfo = e.detail.userInfo
-    var t = this // 定义 变量 t var 可以定义全局变量 let 定义局部变量
+    var t = this //
     console.log('获取头像昵称', e) // console.log 打印输出
 
     //获取云函数
@@ -52,7 +51,8 @@ Page({
         haveGetOpenId: true,
         openId: resp.result.openid
       });
-     console.log('openid',resp.result.openid)
+      app.globalData.openid=resp.result.openid; 
+      console.log('openid',app.globalData.openid);
      wx.hideLoading();
    });
 
@@ -61,18 +61,18 @@ Page({
       desc: '用于在后台更好的识别您的身份', //声明获取用户个人信息后的用途
       success(res) { //接口调用成功的回调函数
         console.log('获取', res)
-        wx.setStorageSync('userInfo', res.userInfo); // userInfo 本地缓存指定的 key  res.userInfo 需要存储的数据
-        // wx.setStorageSync('userInfo', res.userInfo); 第一个参数为本地缓存指定的 key 
-        // 第二个参数为 res.userInfo 为要需要存储的数据信息 这里要把 res.userInfo 获取到的用户信息列表，存储在userInfo 列表里面
-        t.setData({ //对 userInfo 进行数据更改，赋值
-            userInfo: res.userInfo, //把获取到的数据列表赋值给 userInfo 改变里面的数据
-            avatarUrl: res.userInfo.avatarUrl, //把头像地址赋值给 avatarUrl
-            hasUserInfo: true,
-          }),
-          wx.switchTab({ //跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面 就是首页  
-            //用户授权成功后就要跳转到首页导航栏
-            url: "/pages/index/index",
-          }); // 进入到首页后，出现消息提示窗，提示用户:'欢迎使用本小程序'的提示语
+        app.globalData.userInfo=res.userInfo; 
+        //wx.setStorageSync('userInfo', res.userInfo); // userInfo 本地缓存指定的 key  res.userInfo 需要存储的数据 
+        // t.setData({ //对 userInfo 进行数据更改，赋值 
+        //     userInfo: res.userInfo, //把获取到的数据列表赋值给 userInfo 改变里面的数据 
+        //     avatarUrl: res.userInfo.avatarUrl, //把头像地址赋值给 avatarUrl 
+        //     hasUserInfo: true, 
+        //   }), 
+        wx.switchTab({ //跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面 就是首页   
+          //用户授权成功后就要跳转到首页导航栏 
+          url: "/pages/index/index", 
+        }); // 进入到首页后，出现消息提示窗，提示用户:'欢迎使用本小程序'的提示语 
+
         wx.showToast({ //显示消息提示框
           icon: "success", //显示成功图标，此时 title 文本最多显示 7 个汉字长度
           title: '欢迎使用本程序',
@@ -102,9 +102,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.setData({
-            userInfo: wx.getStorageSync('userInfo') // 更新存储里面的 key ：userInfo
-          })
+        // this.setData({
+        //     userInfo: wx.getStorageSync('userInfo') // 更新存储里面的 key ：userInfo
+        //   })
     },
     // getUserProfile() {
     //     wx.getUserProfile({

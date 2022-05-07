@@ -6,7 +6,7 @@
 				<view class="product-item-wrap">
 					<icon type="{{item.select}}" size="19" data-index="{{index}}" data-select="{{item.select}}" bindtap="change" color="red" />
 					<view class="product_img">
-						<image src="{{item.image}}" class='goods-img' mode="widthFix"></image>
+						<image src="{{item.image}}" class='goods-img' mode="widthFix" style="width: 160rpx; height: 115rpx; display: block; box-sizing: border-box"></image>
 					</view>
 					<view class="product-movable-item">
 						<view class="goods-name">{{item.name}}</view>

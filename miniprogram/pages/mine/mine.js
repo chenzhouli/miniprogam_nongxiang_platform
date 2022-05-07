@@ -40,10 +40,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.setData({
-            avatarUrl:options.avatarUrl,
-            nickName:options.nickName
-        })
+        // this.setData({
+        //     avatarUrl:options.avatarUrl,
+        //     nickName:options.nickName
+        // })
 
     },
 
@@ -59,7 +59,8 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        let userInfo = wx.getStorageSync('userInfo')
+        let userInfo = app.globalData.userInfo; 
+        console.log('userinfo',userInfo); 
         if(userInfo){
             this.setData({
                 avatarUrl:userInfo.avatarUrl,
@@ -67,10 +68,10 @@ Page({
                 havelogin:true
             })
         }else{
-                 this.setData({
-                 havelogin:false
-                 }) 
-            }
+            this.setData({
+                havelogin:false
+                }) 
+           }
 
     },
 

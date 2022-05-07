@@ -1,4 +1,5 @@
 // pages/pay/pay.js
+var app=getApp(); 
 Page({
 
     /**
@@ -10,9 +11,31 @@ Page({
     detailedAddress: "",//地址
     },
 
-    
+     /** 
+   * 输入框实时回调 
+   */ 
+  getusername: function (options) { 
+    //获取输入框输入的内容 
+    //console.log('options',options); 
+    app.globalData.goodsname = options.detail.value; 
+  }, 
+ 
+  getuserphone: function (options) { 
+    //获取输入框输入的内容 
+    //console.log('options',options); 
+    app.globalData.goodsnumber = options.detail.value; 
+  }, 
+  getuseraddress: function (options) { 
+    //获取输入框输入的内容 
+    //console.log('options',options); 
+    app.globalData.goodsaddress = options.detail.value; 
+  }, 
 
       binpay(){
+        // this.getusername(); 
+        // this.getuserphone(); 
+        // this.getuseraddress(); 
+        console.log('app',app.globalData) 
         wx.showToast({
             title: '购买成功',
             icon: 'success',

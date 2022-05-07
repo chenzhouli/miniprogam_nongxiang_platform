@@ -83,22 +83,21 @@ Page({
     addtion: function (e) {//添加商品
         var that = this
         var index = e.currentTarget.dataset.index
-        //var num = e.currentTarget.dataset.num
+        var num = e.currentTarget.dataset.num
         var id = that.data.cartlist[index]._id
-        // if (num < 99) { //默认峰值99件
-        //   num++
-        // }
-        // var newList = that.data.slideProductList
-        // newList[index].num = num
-        // that.setData({
-        //   goodsNum:num,
-        //   cartlist: newList
-        // })
+        if (num < 99) { //默认峰值99件
+          num++
+        }
+        var newList = that.data.cartlist
+        newList[index].num = num
+        that.setData({
+          cartlist: newList
+        })
         wx.showLoading({
           title: '数据加载中...'
           });
 
-        console.log('e',e); 
+        //console.log('e',e); 
         wx.cloud.callFunction({ 
           name: 'quickstartFunctions', 
           config: { 
@@ -113,9 +112,6 @@ Page({
           } 
         }).then((resp) => { 
           console.log('请求成功',resp) 
-          this.setData({ 
-            cartlist: resp.result.data 
-          }); 
           wx.hideLoading();
         }).catch(resp =>{ 
           console.log('请求失败',resp) 
@@ -127,19 +123,18 @@ Page({
         var that = this
         var index = e.currentTarget.dataset.index
         var id = that.data.cartlist[index]._id
-        //var num = e.currentTarget.dataset.num
-        //var newList = that.data.slideProductList
+        var num = e.currentTarget.dataset.num
+        var newList = that.data.cartlist
         //当1件时，再次点击移除该商品
-        // if (num == 1) {
-        //   newList.splice(index, 1)
-        // } else {
-        //   num--
-        //   newList[index].num = num
-        // }
-        // that.setData({
-        //   goodsNum: num,
-        //   slideProductList: newList
-        // })
+        if (num == 1) {
+          newList.splice(index, 1)
+        } else {
+          num--
+          newList[index].num = num
+        }
+        that.setData({
+          cartlist: newList
+        })
         wx.showLoading({
           title: '数据加载中...'
           });
@@ -158,9 +153,6 @@ Page({
           } 
         }).then((resp) => { 
           console.log('请求成功',resp) 
-          this.setData({ 
-            cartlist: resp.result.data 
-          }); 
           wx.hideLoading();
         }).catch(resp =>{ 
           console.log('请求失败',resp) 
@@ -213,6 +205,9 @@ Page({
     
     //获得购物车数据库 
     getcartlist(){ 
+      wx.showLoading({ 
+        title: '数据加载中...' 
+      }); 
       wx.cloud.callFunction({ 
         name: 'quickstartFunctions', 
         config: { 
@@ -228,6 +223,7 @@ Page({
           haveGetcart: true, 
           cartlist: resp.result.data 
         }); 
+        wx.hideLoading();
       }).catch(resp =>{ 
         console.log('请求失败',resp) 
       }); 
@@ -236,8 +232,8 @@ Page({
     bindacount(){
       if(this.data.num==0){
         wx.showToast({
-          title: '暂无商品！',
-          icon: 'success',
+          title: '暂无商品',
+          icon: 'error',
           duration: 2000
         });
       }else{

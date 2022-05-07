@@ -1,4 +1,5 @@
 // pages/file/file.js
+var app=getApp(); 
 Page({
 
     /**
@@ -7,30 +8,70 @@ Page({
     data: {
         // 被选中的图片路径 数组
     chooseImgs: [],
+    cloudpath:[], 
+    haveGetImgSrc:false 
     },
 
-    handleChooseImg(e) {
-        // 2 调用小程序内置的选择图片api
-        wx.chooseImage({
-          // 同时选中的图片的数量
-          count: 9,
-          // 图片的格式  原图  压缩
-          sizeType: ['original', 'compressed'],
-          // 图片的来源  相册  照相机
-          sourceType: ['album', 'camera'],
-          success: (result) => {
-            this.setData({
-              // 图片数组 进行拼接 
-              chooseImgs: [...this.data.chooseImgs, ...result.tempFilePaths],
-            })
-          }
-        });
+    handleChooseImg() { 
+      wx.showLoading({ 
+        title: '', 
+      });
+        // 2 调用小程序内置的选择图片app
+        wx.chooseImage({ 
+          // 同时选中的图片的数量 
+          count: 9, 
+          // 图片的格式  原图  压缩 
+          sizeType: ['original', 'compressed'], 
+          // 图片的来源  相册  照相机 
+          sourceType: ['album', 'camera'], 
+          success: (result) => { 
+            this.setData({ 
+              // 图片数组 进行拼接  
+              chooseImgs: [...this.data.chooseImgs, ...result.tempFilePaths], 
+            }) 
+            //console.log('path',this.data.chooseImgs); 
+            wx.hideLoading(); 
+          } 
+        }); 
+      }, 
+   
+      handleFormSubmit(){ 
+        // getname(); 
+        // getphonenumber(); 
+        // getaddress(); 
+        // 将图片上传至云存储空间 
+            for(let i=0;i<9;i++){ 
+                if(this.data.chooseImgs[i]){ 
+                  wx.cloud.uploadFile({ 
+                  // 指定上传到的云路径 
+                    cloudPath: 'upload_emptyland/emptyland'+i+'.png', 
+                  // 指定要上传的文件的小程序临时文件路径 
+                    filePath: this.data.chooseImgs[i], 
+                    config: { 
+                      env: this.data.envId 
+                    } 
+                  }).then(res => { 
+                  console.log('上传成功', res); 
+                  //cloudpath有点问题 
+                  this.setData({ 
+                    haveGetImgSrc: true, 
+                    cloudpath: [...this.data.cloudPath,...res.fileID] 
+                  }); 
+                  console.log('cloudpath',cloudpath); 
+                  wx.hideLoading(); 
+                  }).catch((e) => { 
+                   console.log(e); 
+                   wx.hideLoading(); 
+                  }); 
+                }
+              }
       },
       
       // 根据索引删除上传的图片
   handleRemoveImg(e){
     // 1 获取被点击的组件的索引
     const {index} = e.currentTarget.dataset;
+    console.log(e.currentTarget.dataset); 
     // 2 获取data中的图片数组
     let { chooseImgs } = this.data;
     // 3 删除元素
@@ -39,18 +80,29 @@ Page({
       chooseImgs
     })
   },
-    // 外网的图片的路径数组
-    UpLoadImgs: [],
+    
+  // 查看大图 
+  handleImagePreview(e) { 
+    const {index} = e.currentTarget.dataset; 
+    const chooseImgs = this.data.chooseImgs; 
+    wx.previewImage({ 
+      current: chooseImgs[index], //当前预览的图片 
+      urls: chooseImgs, //所有要预览的图片 
+    }) 
+  },
+
+  getname:function (options){ 
+    app.globalData.landname = options.detail.value; 
+  }, 
+
+  getphonenumber:function (options){ 
+    app.globalData.landnumber = options.detail.value; 
+  }, 
+
+  getaddress:function (options){ 
+    app.globalData.landaddress = options.detail.value; 
+  },
   
-      // 查看大图
-      handleImagePreview(e) {
-        const {index} = e.currentTarget.dataset;
-        const chooseImgs = this.data.chooseImgs;
-        wx.previewImage({
-          current: chooseImgs[index], //当前预览的图片
-          urls: chooseImgs, //所有要预览的图片
-        })
-      },
     /**
      * 生命周期函数--监听页面加载
      */

@@ -30,9 +30,9 @@ data-current="0" bindtap='swichNav'>
         <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
       </view>
       <view class='info'>
-        <view class='title'>{{item.name}}</view>
-        <view class='price'>￥{{item.price}}</view>
-        <view class='num'>销量{{item.sale}}</view>
+        <view class='title' style="width: 113rpx; height: 61rpx; display: block; box-sizing: border-box">{{item.name}}</view> 
+        <view class='price' style="width: 113rpx; height: 47rpx; display: block; box-sizing: border-box">￥{{item.price}}</view> 
+        <view class='num' style="position: absolute; left: 1rpx; top: 165rpx">销量{{item.sale}}</view>
       </view>
       <view class='clear'></view>
   </view>
@@ -51,9 +51,9 @@ data-current="0" bindtap='swichNav'>
         <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
       </view>
       <view class='info'>
-        <view class='title'>{{item.name}}</view>
-        <view class='price'>￥{{item.price}}</view>
-        <view class='num'>销量{{item.sale}}</view>
+        <view class='title' style="width: 113rpx; height: 61rpx; display: block; box-sizing: border-box">{{item.name}}</view> 
+        <view class='price' style="width: 113rpx; height: 47rpx; display: block; box-sizing: border-box">￥{{item.price}}</view> 
+        <view class='num' style="position: absolute; left: 1rpx; top: 165rpx">销量{{item.sale}}</view>
       </view>
       <view class='temp'></view>
   </view>
@@ -65,5 +65,5 @@ data-current="0" bindtap='swichNav'>
 
 <!--购物车-->
 <view id="askView" bindtap="binbuycar">
-  <image src="../../icon/gouwuchexuanzhong.png"></image>
+  <image src="../../icon/gouwuchexuanzhong.png" style="width: 129rpx; height: 101rpx; display: inline-block; box-sizing: border-box"></image>
 </view>

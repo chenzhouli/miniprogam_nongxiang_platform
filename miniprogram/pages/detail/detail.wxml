@@ -23,8 +23,8 @@
 
 <view class="detail-nav">
   <view class="line_nav"></view>
-  <button class="button-green"  bindtap="addcart" formType="submit">加入购物车</button>
-  <button class="button-red" bindtap="tobuy" formType="submit">立即购买</button>
+  <button class="button-green"  bindtap="addcart" formType="submit" style="position: relative; left: -5rpx; top: 0rpx; width: 373rpx; height: 99rpx; display: block; box-sizing: border-box">加入购物车</button> 
+  <button class="button-red" bindtap="tobuy" formType="submit" style="position: relative; left: 0rpx; top: 0rpx">立即购买</button> 
 </view>
 
 
@@ -68,6 +68,6 @@
 
 <!--购物车-->
 <view id="askView" bindtap="binbuycar">
-  <image src="../../icon/gouwuchexuanzhong.png"></image>
+  <image src="../../icon/gouwuchexuanzhong.png" style="width: 125rpx; height: 99rpx; display: inline-block; box-sizing: border-box"></image> 
 </view>
 
