@@ -36,6 +36,7 @@
             size="23"
             color="red"
             bindtap="handleRemoveImg"
+            data-index="{{index}}"
               >
           </icon>
           </view>
