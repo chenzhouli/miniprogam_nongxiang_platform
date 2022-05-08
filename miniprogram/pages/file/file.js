@@ -37,6 +37,23 @@ Page({
         }); 
       }, 
    
+      getname: function (options) { 
+        //获取输入框输入的内容 
+        //console.log('options',options); 
+        app.globalData.landname = options.detail.value; 
+      }, 
+     
+      getphonenumber: function (options) { 
+        //获取输入框输入的内容 
+        //console.log('options',options); 
+        app.globalData.landnumber = options.detail.value; 
+      }, 
+      getaddress: function (options) { 
+        //获取输入框输入的内容 
+        //console.log('options',options); 
+        app.globalData.landaddress = options.detail.value; 
+      }, 
+
       handleFormSubmit(){ 
         // getname(); 
         // getphonenumber(); 

@@ -9,6 +9,7 @@ Page({
     consigneeName: "", //收货人姓名
     phone: "",//电话
     detailedAddress: "",//地址
+    dingdan:[{}]
     },
 
      /** 
@@ -35,6 +36,8 @@ Page({
         // this.getusername(); 
         // this.getuserphone(); 
         // this.getuseraddress(); 
+        this.update_dingdan(); //更新订单
+        this.update_cart();  //更新购物车
         console.log('app',app.globalData) 
         wx.showToast({
             title: '购买成功',
@@ -47,11 +50,76 @@ Page({
         })},2000)
       },
 
+
+      update_dingdan(){
+        var that = this
+        var newList = that.data.dingdan
+        for (var i = 0; i < newList.length; i++) {
+            wx.cloud.callFunction({ 
+              name: 'quickstartFunctions', 
+              config: { 
+                env: this.data.envId 
+              }, 
+              data: { 
+                type: 'add_dingdan', 
+                id:newList[i]._id,
+                num:newList[i].num,
+                image:newList[i].image,
+                price:newList[i].price,
+                sale:newList[i].sale,
+                name:newList[i].name
+              } 
+            }).then((resp) => { 
+              console.log('更新成功',resp) 
+            }).catch(resp =>{ 
+              console.log('更新失败',resp) 
+            }); 
+        }
+      },
+  
+      update_cart(){
+        var that = this
+        var newList = that.data.dingdan
+        for (var i = 0; i < newList.length; i++) {
+            wx.cloud.callFunction({ 
+              name: 'quickstartFunctions', 
+              config: { 
+                env: this.data.envId 
+              }, 
+              data: { 
+                type: 'dele_cart', 
+                id:newList[i]._id,
+              } 
+            }).then((resp) => { 
+              console.log('删除成功',resp) 
+            }).catch(resp =>{ 
+              console.log('删除失败',resp) 
+            }); 
+        }
+      },
+
+      
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+      wx.getStorage({
+          key: 'dingdan',
+          success: (res) => {
+            console.log("获取订单",res);
+            this.setData({
+              dingdan:res.data
+            })
+          }
+      });
+      
+    },
 
+    bind_detail(e){
+      let goods_id=e.currentTarget.dataset.goods_id
+      wx.navigateTo({
+         url: "../detail/detail?goods_id="+goods_id,
+      })
     },
 
     /**

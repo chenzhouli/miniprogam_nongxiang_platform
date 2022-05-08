@@ -240,6 +240,8 @@ Page({
     }, 
 
     bindacount(){
+      var selectlist=[{}];
+      let count=0;
       if(this.data.num==0){
         wx.showToast({
           title: '暂无商品',
@@ -247,60 +249,71 @@ Page({
           duration: 2000
         });
       }else{
-        this.update_dingdan(); //更新订单
-        this.update_cart();  //更新购物车
+        // this.update_dingdan(); //更新订单
+        // this.update_cart();  //更新购物车
+        for (var i=0;i<this.data.cartlist.length;i++){
+          if(this.data.cartlist[i].select=="success"){
+              selectlist[count]=this.data.cartlist[i];
+              count++;
+          }
+        }
+        console.log('select',selectlist);
+        wx.setStorage({
+          key: 'dingdan',
+          data: selectlist
+        })
         wx.navigateTo({
             url: '../../pages/pay/pay',
           })
       }
     },
 
-    update_dingdan(){
-      var that = this
-      var newList = that.data.cartlist
-      for (var i = 0; i < newList.length; i++) {
-        if (newList[i].select == "success") {
-          wx.cloud.callFunction({ 
-            name: 'quickstartFunctions', 
-            config: { 
-              env: this.data.envId 
-            }, 
-            data: { 
-              type: 'add_dingdan', 
-              id:newList[i]._id,
-              flag:1
-            } 
-          }).then((resp) => { 
-            console.log('更新成功',resp) 
-          }).catch(resp =>{ 
-            console.log('更新失败',resp) 
-          }); 
-        }
-      }
-    },
+    // update_dingdan(){
+    //   var that = this
+    //   var newList = that.data.cartlist
+    //   for (var i = 0; i < newList.length; i++) {
+    //     if (newList[i].select == "success") {
+    //       wx.cloud.callFunction({ 
+    //         name: 'quickstartFunctions', 
+    //         config: { 
+    //           env: this.data.envId 
+    //         }, 
+    //         data: { 
+    //           type: 'add_dingdan', 
+    //           id:newList[i]._id,
+    //           flag:1
+    //         } 
+    //       }).then((resp) => { 
+    //         console.log('更新成功',resp) 
+    //       }).catch(resp =>{ 
+    //         console.log('更新失败',resp) 
+    //       }); 
+    //     }
+    //   }
+    // },
 
-    update_cart(){
-      var that = this
-      var newList = that.data.cartlist
-      for (var i = 0; i < newList.length; i++) {
-        if (newList[i].select == "success"){
-          wx.cloud.callFunction({ 
-            name: 'quickstartFunctions', 
-            config: { 
-              env: this.data.envId 
-            }, 
-            data: { 
-              type: 'dele_cart', 
-              id:newList[i]._id,
-            } 
-          }).then((resp) => { 
-            console.log('删除成功',resp) 
-          }).catch(resp =>{ 
-            console.log('删除失败',resp) 
-          }); 
-        }
-      }
-    },
+    // update_cart(){
+    //   var that = this
+    //   var newList = that.data.cartlist
+    //   for (var i = 0; i < newList.length; i++) {
+    //     if (newList[i].select == "success"){
+    //       wx.cloud.callFunction({ 
+    //         name: 'quickstartFunctions', 
+    //         config: { 
+    //           env: this.data.envId 
+    //         }, 
+    //         data: { 
+    //           type: 'dele_cart', 
+    //           id:newList[i]._id,
+    //         } 
+    //       }).then((resp) => { 
+    //         console.log('删除成功',resp) 
+    //       }).catch(resp =>{ 
+    //         console.log('删除失败',resp) 
+    //       }); 
+    //     }
+    //   }
+    // },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

@@ -5,6 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        goods_info:[{}],
         id:"",
         goods_img:"",
         goods_title:"",
@@ -61,7 +62,6 @@ Page({
       });
       
 
-      //console.log(options.goods_id);
       this.setData({
         id:options.goods_id
       })
@@ -81,6 +81,7 @@ Page({
         //console.log(resp.result.data[0]);
 
         this.setData({
+          goods_info:resp.result.data,
           goods_img:resp.result.data[0].image,
           goods_title:resp.result.data[0].name,
           goods_price:resp.result.data[0].price,
@@ -126,34 +127,39 @@ Page({
   },
   //立即购买
   immeBuy() {
-    this.update_dingdan();
+    this.data.goods_info[0].num=this.data.num;
+    wx.setStorage({
+      key: 'dingdan',
+      data: this.data.goods_info
+    })
+    //this.update_dingdan();
     wx.navigateTo({
       url: '../pay/pay',
     })
   },
 
-  update_dingdan(){
-    wx.cloud.callFunction({ 
-      name: 'quickstartFunctions', 
-      config: { 
-        env: this.data.envId 
-      }, 
-      data: { 
-        type: 'add_dingdan', 
-        id:this.data.id,
-        num:this.data.num,
-        image:this.data.goods_img,
-        price:this.data.goods_price,
-        sale:this.data.goods_xiaoliang,
-        name:this.data.goods_title,
-        flag:0
-      } 
-    }).then((resp) => { 
-      console.log('更新成功',resp) 
-    }).catch(resp =>{ 
-      console.log('更新失败',resp) 
-    }); 
-  },
+  // update_dingdan(){
+  //   wx.cloud.callFunction({ 
+  //     name: 'quickstartFunctions', 
+  //     config: { 
+  //       env: this.data.envId 
+  //     }, 
+  //     data: { 
+  //       type: 'add_dingdan', 
+  //       id:this.data.id,
+  //       num:this.data.num,
+  //       image:this.data.goods_img,
+  //       price:this.data.goods_price,
+  //       sale:this.data.goods_xiaoliang,
+  //       name:this.data.goods_title,
+  //       flag:0
+  //     } 
+  //   }).then((resp) => { 
+  //     console.log('更新成功',resp) 
+  //   }).catch(resp =>{ 
+  //     console.log('更新失败',resp) 
+  //   }); 
+  // },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

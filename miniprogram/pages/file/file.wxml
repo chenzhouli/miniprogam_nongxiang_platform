@@ -5,7 +5,7 @@
 <view class="container">
 <view class="person">
   <text>申请人：</text>
-  <input type="text" placeholder="申请人姓名" bindinput="getperson" bindinput="getname" value="{{address.name}}"/>
+  <input type="text" placeholder="申请人姓名" bindinput="getname" value="{{address.name}}"/>
 </view>
 
 <view class="phonenumber">
@@ -15,7 +15,7 @@
  
 <view class="address">
   <text>详细地址：</text>
-  <input type="text" placeholder="您想上传的土地地址" bindinput="address" bindinput="getaddress" value="{{address.addressdetail}}"/>
+  <input type="text" placeholder="您想上传的土地地址" bindinput="getaddress" value="{{address.addressdetail}}"/>
 </view>
 </view>
 
