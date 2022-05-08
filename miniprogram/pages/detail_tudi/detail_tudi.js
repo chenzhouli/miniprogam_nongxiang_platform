@@ -12,6 +12,7 @@ Page({
         detailImg:"",//详情照片
         tudi_add:"",//地址
         tudi_chra:"",//土地适中产物
+        tudi_area:0, //面积
         hideShopPopup: true,
         num:1,
         swiperList:[],
@@ -56,26 +57,39 @@ Page({
     // wx.navigateTo({
     //   url: '../pay/pay',
     // })
-    wx.cloud.callFunction({ 
-      name: 'quickstartFunctions', 
-      config: { 
-        env: this.data.envId 
-      }, 
-      data: { 
-        type: 'addmyland', 
-        id:this.data.id 
-      } 
-    }).then((resp) => { 
-      console.log('请求成功',resp); 
-      wx.showToast({ 
-        title: '认养成功', 
-        icon: 'success', 
-        duration: 2000 
+    if(this.data.num<=this.data.tudi_area){
+      wx.cloud.callFunction({ 
+        name: 'quickstartFunctions', 
+        config: { 
+          env: this.data.envId 
+        }, 
+        data: { 
+         type: 'addmyland', 
+         id:this.data.id ,
+         num:this.data.num
+        } 
+      }).then((resp) => { 
+       console.log('请求成功',resp); 
+        wx.showToast({ 
+          title: '认养成功', 
+          icon: 'success', 
+          duration: 2000 
+        }); 
+      }).catch(resp =>{ 
+        console.log('请求失败',resp) 
+        wx.showToast({ 
+         title: '认养亩数溢出', 
+          icon: 'error', 
+          duration: 2000 
+        }); 
       }); 
-    }).catch(resp =>{ 
-      console.log('已认养，请勿重复操作',resp) 
-    }); 
-
+    }else{
+      wx.showToast({ 
+        title: '认养亩数溢出', 
+         icon: 'error', 
+         duration: 2000 
+       }); 
+    }
 },
 
     /**

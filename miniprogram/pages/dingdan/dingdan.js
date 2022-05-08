@@ -17,6 +17,9 @@ Page({
      */
     onLoad(options) {
         this.getdingdan();
+        var pages = getCurrentPages(); //当前页面
+        var beforePage = pages[pages.length - 2]; //前一页
+        beforePage.onLoad(); // 执行前一个页面的onLoad方法
     },
 
     getdingdan(){

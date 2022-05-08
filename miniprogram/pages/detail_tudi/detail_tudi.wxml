@@ -11,7 +11,7 @@
     <view class="container">
     <view id="onlineView">
     <image src="../../icon/daohang.png" mode="scaleToFill"></image>
-    <text>面积：{{tudi_area}}</text>
+    <text>面积：{{tudi_area}}亩</text>
     </view>
     <view id="onlineView">
     <image src="../../icon/daohang.png" mode="scaleToFill"></image>

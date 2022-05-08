@@ -9,7 +9,8 @@ Page({
         // 被选中的图片路径 数组
     chooseImgs: [],
     cloudpath:[], 
-    haveGetImgSrc:false 
+    haveGetImgSrc:false
+    //count:0
     },
 
     handleChooseImg() { 
@@ -28,6 +29,7 @@ Page({
             this.setData({ 
               // 图片数组 进行拼接  
               chooseImgs: [...this.data.chooseImgs, ...result.tempFilePaths], 
+              haveGetImgSrc:true
             }) 
             //console.log('path',this.data.chooseImgs); 
             wx.hideLoading(); 
@@ -40,31 +42,44 @@ Page({
         // getphonenumber(); 
         // getaddress(); 
         // 将图片上传至云存储空间 
-            for(let i=0;i<9;i++){ 
+        if(this.data.haveGetImgSrc){
+          var rand=Math.round(Math.random()*1000);
+          for(var i=0;i<9;i++){ 
                 if(this.data.chooseImgs[i]){ 
                   wx.cloud.uploadFile({ 
                   // 指定上传到的云路径 
-                    cloudPath: 'upload_emptyland/emptyland'+i+'.png', 
+                    cloudPath: 'upload_emptyland/emptyland'+rand+'/'+i+'.png', 
                   // 指定要上传的文件的小程序临时文件路径 
                     filePath: this.data.chooseImgs[i], 
                     config: { 
                       env: this.data.envId 
                     } 
                   }).then(res => { 
-                  console.log('上传成功', res); 
-                  //cloudpath有点问题 
-                  this.setData({ 
-                    haveGetImgSrc: true, 
-                    cloudpath: [...this.data.cloudPath,...res.fileID] 
-                  }); 
-                  console.log('cloudpath',cloudpath); 
-                  wx.hideLoading(); 
+                    console.log('上传成功', res); 
+                    //cloudpath有点问题 
+                    this.setData({ 
+                      haveGetImgSrc: true, 
+                      //cloudpath: [...this.data.cloudPath,...res.fileID] 
+                    }); 
+                      //console.log('cloudpath',cloudpath); 
+                  wx.showToast({
+                    title: '上传成功',
+                    icon: 'success',
+                    duration: 2000
+                  });
                   }).catch((e) => { 
                    console.log(e); 
                    wx.hideLoading(); 
                   }); 
                 }
-              }
+            }
+        }else{
+          wx.showToast({
+            title: '请上传相关资料',
+            icon: 'error',
+            duration: 2000
+          });
+        }
       },
       
       // 根据索引删除上传的图片

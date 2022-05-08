@@ -200,9 +200,19 @@ Page({
         this.setData({
           height:height
         })
-        this.getcartlist(); 
+        this.getcartlist();
+        this.countclear() //刷新时清零
     },
     
+    countclear(){
+      var that = this
+      that.setData({
+        num:0,
+        count:0,
+        allSelect:"circle"
+      })
+    },
+
     //获得购物车数据库 
     getcartlist(){ 
       wx.showLoading({ 
