@@ -2,7 +2,7 @@
 /*购物车产品列表*/
 .cart-box .item {display:flex;flex-direction:row;align-items:center;padding:20rpx;border-top:8rpx solid #f0f3fa;}
 .cart-box .item .goods-info {margin-left:20rpx;}
-.goods-img {width:160rpx;margin-left:20rpx;height:160rpx;}
+.product_img .goods-img {width:160rpx;margin-left:20rpx;height:115rpx;}
 .cart-box .row {color:#fff;display:flex;flex-direction:row;width:430rpx;justify-content:space-between;margin-bottom:10rpx;}
 .goods-name {font-size:32rpx;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#333;padding-bottom:10rpx;width:290rpx;}
 .goods-price {font-size:32rpx;color:#225e13;position:relative;top:14rpx;}
