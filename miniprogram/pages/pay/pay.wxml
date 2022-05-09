@@ -4,20 +4,20 @@
       <view class="address-msg">
         <view class="item-msg">收货人</view>
         <view class="section">
-          <input type="text" placeholder="请填写收货人姓名" value="{{consigneeName}}" bindinput="getusername" bindblur="consigneeNameInput" placeholder-class="phcolor"></input>
+          <input type="text" placeholder="请填写收货人姓名" value="{{consigneeName}}" bindinput="getusername"  placeholder-class="phcolor"></input>
         </view>
       </view>
       <view class="address-msg"> 
         <view class="item-msg">手机号码</view>
         <view class="section">
-          <input type="number" placeholder="请填写收货人手机号码" value="{{phone}}"  bindinput="getuserphone" maxlength="11" bindblur="phoneInput" placeholder-class="phcolor"></input>
+          <input type="number" placeholder="请填写收货人手机号码" value="{{phone}}"  bindinput="getuserphone" maxlength="11"  placeholder-class="phcolor"></input>
         </view>
       </view>
 
       <view class="address-msg">
         <view class="item-msg">详细地址</view>
         <view class="section">
-          <input type="text" placeholder="街道、楼牌号等" value="{{detailedAddress}}" bindinput="getuseraddress" bindblur="detailedAddressInput" placeholder-class="phcolor"></input>
+          <input type="text" placeholder="街道、楼牌号等" value="{{detailedAddress}}" bindinput="getuseraddress"  placeholder-class="phcolor"></input>
         </view>
         <view class="address-rights" bindtap='select'>
           <image src="../../icon/daohang.png"></image>
@@ -30,9 +30,10 @@
 </view>
 
 <view>
+<text>订单列表</text>
         <view class='list'>
   <block wx:for='{{dingdan}}' wx:key="_id" wx:for-item="item">
-  <view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
+  <view class="list_item" data-goods_id="{{item._id}}">
       <view class='img'>
         <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
       </view>

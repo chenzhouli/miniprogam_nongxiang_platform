@@ -10,6 +10,7 @@ Page({
     phone: "",//电话
     detailedAddress: "",//地址
     dingdan:[{}]
+
     },
 
      /** 
