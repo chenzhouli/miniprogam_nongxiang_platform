@@ -1,14 +1,8 @@
 <!--pages/mine/mine.wxml-->
 <!--个人信息-->
-<view class="load" wx:if="{{!havelogin}}">
-<i-card title="nickName" extra="个人信息" thumb="../../icon/logo.jpg" full="true">
-    <view slot="content">个性签名：</view>
-</i-card>
-</view>
-
 <view class="load" wx:if="{{havelogin}}">
 <i-card title="{{nickName}}" extra="个人信息" thumb="{{avatarUrl}}" full="true">
-<view slot="content">个性签名：</view>
+    <view slot="content">个性签名：</view>
 </i-card>
 </view>
 
@@ -31,21 +25,22 @@
 <view id="onlineView" bindtap="bind_cart">
   <image src="../../icon/shoucang.png"></image>
   <text>我的订单</text>
-  <!-- 右箭头实现 -->
+
   <view class="arrow"></view>
 </view>
 
 <button id="onlineView"open-type='feedback'>
   <image src="../../icon/shoucang.png" ></image>
   <text>意见反馈</text>
-  <!-- 右箭头实现 -->
+
+
   <view class="arrow"></view>
 </button>
 
 <view id="onlineView" bindtap="bind_aboutus">
   <image src="../../icon/shoucang.png"></image>
   <text>关于我们</text>
-  <!-- 右箭头实现 -->
+
   <view class="arrow"></view>
 </view>
 </view>

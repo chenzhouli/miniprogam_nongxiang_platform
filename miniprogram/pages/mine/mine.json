@@ -1,7 +1,8 @@
 {
-    
   "component": true,
-  "usingComponents": {},
+  "usingComponents": {
+      "i-card":"../../components/i-card/i-card"
+  },
   "navigationBarTitleText": "我的土地",
   "disableScroll": true
 }
