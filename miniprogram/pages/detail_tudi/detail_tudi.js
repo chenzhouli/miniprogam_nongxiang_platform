@@ -1,3 +1,5 @@
+const { TIMEOUT } = require("dns");
+
 // pages/detail_tudi/detail_tudi.js
 Page({
 
@@ -54,9 +56,6 @@ Page({
 
       //选择认养
   immeBuy() {
-    // wx.navigateTo({
-    //   url: '../pay/pay',
-    // })
     if(this.data.num<=this.data.tudi_area){
       wx.cloud.callFunction({ 
         name: 'quickstartFunctions', 
@@ -99,10 +98,19 @@ Page({
       wx.showLoading({
         title: '数据加载中...'
         });
-
       this.setData({
         id:options.tudi_id
       })
+
+      let pages=getCurrentPages();
+      let prevpage=pages[pages.length-2];
+      let indexx=''
+      console.log(prevpage.route);
+      if (prevpage.route=='pages/adopt/adopt'){
+        indexx='empty_land'
+      }else{
+        indexx='my_land'
+      }
 
       wx.cloud.callFunction({
         name: 'quickstartFunctions',
@@ -112,11 +120,10 @@ Page({
         data: {
           type: 'selectgoods',
           id: options.tudi_id,
-          index:'empty_land'
+          index:indexx
         }
       }).then((resp) => {
         console.log('请求成功',resp);
-        //console.log(resp.result.data[0]);
 
         this.setData({
           tudi_img:resp.result.data[0].image,
