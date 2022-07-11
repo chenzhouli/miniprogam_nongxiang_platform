@@ -1,6 +1,6 @@
 {
   "pages":[
-    
+    "pages/classification/classification",
     "pages/load/load",
     "pages/index/index",   
     "pages/buy/buy",
@@ -19,6 +19,7 @@
     "pages/mytudi/mytudi",
     "pages/detail_txt/detail_txt",
     "pages/like/like"
+    
   ],
   "window":{
     "backgroundTextStyle":"dark",
