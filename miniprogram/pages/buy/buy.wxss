@@ -8,88 +8,91 @@
 }
 #askView {
     position: fixed;
-    bottom: 100rpx;
+    bottom: 50rpx;
     right: 10rpx;
   }
   #askView > image{
     width: 100rpx;
     height: 100rpx;
   }
-  .swiper-tab{  
-    width: 100%;  
-    border-bottom: 2rpx solid #777777;  
-    text-align: center;  
-    line-height: 80rpx;}  
-.swiper-tab-list{  font-size: 30rpx;  
-    display: inline-block;  
-    width: 33%;  
-    color: #777777;  
-}  
-.on{ 
-color: #da7c0c;  
-border-bottom: 5rpx solid #da7c0c;
-}  
-.swiper-box{ 
-display: block; height: 100%; width: 100%; overflow: hidden; 
-}  
-.swiper-box view{  
-    text-align: center;  
-}
-.clear{
-    clear: both;
-    overflow: hidden;
-  }
 
-  .list{
-    margin-top:10px;
-  }
-   
-  .list .list_item{
-    margin-top:10px;
-    padding:10px;
-    height:100px;
-    border-bottom:1px solid #E8E8E8;
-
-  }
-  .list .list_item .img{
-    float:left;
-    width:40%;
-    height:100%;    
-
-  }
-  .list .list_item .img image{
-     width:100%;
-     height:100%;
-  }
-   
-  .list .list_item .info{
-    width:59%;
-    float:right;
-    height:100px;
-    position:relative;
-  }
-  .list .list_item .info .title{
-    color:#333;
-    margin-left:10px;
-    font-size: 15px;
-  }
-   
-  .list .list_item .info .price{
-    color:#FF2727;
-    margin-left:10px;
-    margin-top:10px;
-    font-size:15px;
-  }
-   
-  .list .list_item .info .num{
-    position: absolute;
-    left:0px;
-    bottom:10px;
-    color:#747474;
-    margin-left:10px;
-    font-size:15px;
-  }
-  
   .temp {
     height: 100rpx;
   }
+
+  .container{
+    padding: 0;
+    display: flex;
+    /** 一行放不下时候换行，默认不换行，然后控件会进行缩放进一行内,因为
+    flex-shrink默认为0，否则会溢出边框 */
+    flex-flow: wrap;/** 一行放不下时进行换行 */
+    justify-content: center;/** 设置子项目的水平排列方式 */
+    align-items: flex-start;
+  }
+  .item { 
+    width: 45%; 
+    height: 450rpx; 
+    margin: 15rpx;
+    border-radius: 10rpx; 
+    text-align: center;
+    flex-direction: column;
+    background-color: rgb(247, 247, 247);
+    border-radius: 15rpx;
+  } 
+  .item_img{
+    width: 100%;
+    height: 350rpx;
+    border-radius: 15rpx;
+  }
+  
+  .item_text text{
+    padding-top: 10rpx;
+    display:block;
+    width:100%;
+    font-size:30rpx;
+    word-break: break-all;
+  }
+  .item_text{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+  .left-tit {
+    font-size: 14px;
+    text-align: justify;
+    padding-left: 15px;
+    color: #fd7171;
+  }
+  .right-tit {
+    font-size: 14px;
+    color: #888888;
+  }
+  .nav{
+    display: flex;
+    justify-content: center;
+  }
+  .navView{
+    display: flex;  /* 应用flex布局 ，所有的子元素排在一行*/
+    flex-wrap: wrap; /* 换行*/
+    height: 150rpx;
+    width: 95%;
+    align-content: space-around; /* 多行垂直排列*/
+    font-size: 26rpx;
+    font-weight: 600;
+    background-color: #f3f3f3;
+    border-radius: 20px;
+  }
+  .navView .navItemView{
+    flex-direction: column;
+    display: flex;
+    width: 130rpx;
+    align-items: center;
+    margin: 0 50rpx;
+  }
+  .navItemView >image{
+    display: flex;
+    width: 80rpx;
+    height: 80rpx;
+
+  }
+ 

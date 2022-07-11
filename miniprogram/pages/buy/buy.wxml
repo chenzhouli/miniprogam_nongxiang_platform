@@ -5,63 +5,45 @@
     <image mode="widthFix" src="{{item.imgUrl}}"></image>
   </swiper-item>
 </swiper>
+<!-- 搜索框 -->
+<searchbar
+  placeholder="请搜索您所需要的农产品"
+  bind:handleSearch="handleSearch"
+></searchbar>
 
-
-
-<view class="swiper-tab">
-  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" 
-data-current="0" bindtap='swichNav'>
-价格
-</view>
-  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" 
-	data-current="1" bindtap="swichNav">
-销量
-</view>
-</view>
-
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
-  <swiper-item>
-
-    <view>
-        <view class='list'>
-  <block wx:for='{{goods_info_price}}' wx:key="_id" wx:for-item="item">
-  <view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
-      <view class='img'>
-        <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
-      </view>
-      <view class='info'>
-        <view class='title' style="width: 113rpx; height: 61rpx; display: block; box-sizing: border-box">{{item.name}}</view> 
-        <view class='price' style="width: 113rpx; height: 47rpx; display: block; box-sizing: border-box">￥{{item.price}}</view> 
-        <view class='num' style="position: absolute; left: 1rpx; top: 165rpx">销量{{item.sale}}</view>
-      </view>
-      <view class='clear'></view>
+<view class="nav" >
+<view class="navView" > 
+<view class="navItemView">
+    <image src="../../icon/shoucangxuanzhong.png" bindtap="bind_tuijian"></image>
+    <text>好货推荐</text>
   </view>
-  </block>
-        </view>
-    </view>
-
-</swiper-item>
-
-  <swiper-item>
-    <view>
-        <view class='list'>
-  <block wx:for='{{goods_info_sale}}' wx:key="_id" wx:for-item="item">
-  <view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
-      <view class='img'>
-        <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
-      </view>
-      <view class='info'>
-        <view class='title' style="width: 113rpx; height: 61rpx; display: block; box-sizing: border-box">{{item.name}}</view> 
-        <view class='price' style="width: 113rpx; height: 47rpx; display: block; box-sizing: border-box">￥{{item.price}}</view> 
-        <view class='num' style="position: absolute; left: 1rpx; top: 165rpx">销量{{item.sale}}</view>
-      </view>
-      <view class='temp'></view>
+  <view class="navItemView">
+    <image src="../../icon/wuliuxuanzhong.png" bindtap="bind_cart"></image>
+    <text>我的订单</text>
   </view>
-  </block>
-        </view>
-    </view>
-  </swiper-item>
-</swiper>
+  <view class="navItemView">
+    <image src="../../icon/fenleixuanzhong.png" bindtap="bind_class"></image>
+    <text>全部分类</text>
+  </view>
+
+</view>
+</view>
+
+<view class="container">
+  <view class="item" wx:for="{{goods_info_price}}" wx:key="_id" bindtap="bind_detail" data-goods_id="{{item._id}}">
+ <image class="item_img" mode='aspectFill' src="{{imghref}}{{item.image}}"></image>
+               <view class="item_text">
+              <text>{{item.name}}</text>
+              </view>
+              <view class="item_text">
+              <text class="left-tit">￥{{item.price}}</text> 
+              <text class="right-tit">销量{{item.sale}}</text>
+              </view>
+              <view class='temp'></view>
+          </view>
+</view>
+
+
 
 <!--购物车-->
 <view id="askView" bindtap="binbuycar">

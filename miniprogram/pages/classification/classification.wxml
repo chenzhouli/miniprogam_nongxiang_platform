@@ -19,12 +19,9 @@
     <!-- 如果有数据，才遍历项 -->
     <view wx:if="{{cateItems[curIndex].ishaveChild}}">
       <block wx:for="{{cateItems[curIndex].children}}">
-        <view class="nav_right_items">
-          <!-- 界面跳转 -->
-          <navigator url="../../detail/detail">
+        <view class="nav_right_items" bindtap="bind_detail" data-id="{{item.child_id}}">
             <image src="{{item.image}}"></image>
             <text>{{item.name}}</text>
-          </navigator>
         </view>
       </block>
     </view>

@@ -92,12 +92,23 @@ Page({
    });
     },
 
-    binbuycar(){
+    bind_tuijian(){
         wx.navigateTo({
-            url: '../../pages/buy_car/buy_car',
+            url: "../../pages/detail_mune/detail_mune?id="+0,
           })
     },
-
+    //跳转订单
+    bind_cart(){
+        wx.navigateTo({
+            url: '../../pages/dingdan/dingdan'
+          })
+    },
+    //跳转分类
+        bind_class(){
+            wx.navigateTo({
+                url: '../../pages/classification/classification'
+              })
+        },
     bindChange: function (e) {
         var that = this;
         that.setData({ currentTab: e.detail.current });

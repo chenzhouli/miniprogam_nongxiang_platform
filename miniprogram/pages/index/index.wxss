@@ -44,7 +44,7 @@
 .uploading{
     padding-top: 50rpx;
     padding-bottom: 20rpx;
-    background-color: rgb(214, 243, 216);
+    background-color: rgb(233, 247, 234);
     border-radius: 20px;
 }
 .uploading button{

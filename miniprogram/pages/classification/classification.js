@@ -36,22 +36,22 @@ Page({
             cate_name: "水果",
             ishaveChild: true,
             children: [{
-                child_id: 1,
+                child_id: 5,
                 name: '瓜类',
                 image: "../../icon/cate/c020bcf61ee4f8875bfe202e06379625.jpeg"
               },
               {
-                child_id: 2,
+                child_id: 6,
                 name: '柑橘橙柚',
                 image: "../../icon/cate/65dfa8c583d53f9336e373dcb8fe5fcd.jpeg"
               },
               {
-                child_id: 3,
+                child_id: 7,
                 name: '浆果类',
                 image: "../../icon/cate/e31a1f735542e160eb1b5efdb61f411f.jpeg"
               },
               {
-                child_id: 4,
+                child_id: 8,
                 name: '热带水果',
                 image: "../../icon/cate/a1a31cbcf47d255b068dc4b3d20c1fb9.jpeg"
               }
@@ -72,6 +72,14 @@ Page({
       curIndex: index
     })
   },
+  bind_detail:function(e){
+    let id=e.currentTarget.dataset.id //获取点击产品时拿到的id，就是data-id传过来的值
+    // wx.navigateTo跳转页面的方法
+    //URL是传递的是详情页的路径，把id拼接传过去就可以啦
+    wx.navigateTo({
+        url: "../detail_mune/detail_mune?id="+id,
+    })
+},
     /**
      * 生命周期函数--监听页面加载
      */

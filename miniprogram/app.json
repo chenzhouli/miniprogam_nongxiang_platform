@@ -1,6 +1,6 @@
 {
   "pages":[
-    "pages/classification/classification",
+    
     "pages/load/load",
     "pages/index/index",   
     "pages/buy/buy",
@@ -18,7 +18,9 @@
     "pages/dingdan/dingdan",
     "pages/mytudi/mytudi",
     "pages/detail_txt/detail_txt",
-    "pages/like/like"
+    "pages/like/like",
+    "pages/classification/classification",
+    "pages/detail_mune/detail_mune"
     
   ],
   "window":{

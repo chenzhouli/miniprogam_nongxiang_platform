@@ -1,5 +1,3 @@
-const { TIMEOUT } = require("dns");
-
 // pages/detail_tudi/detail_tudi.js
 Page({
 
