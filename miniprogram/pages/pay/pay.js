@@ -51,7 +51,6 @@ Page({
         })},2000)
       },
 
-
       update_dingdan(){
         var that = this
         var newList = that.data.dingdan

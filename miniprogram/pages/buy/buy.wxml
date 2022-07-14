@@ -30,13 +30,13 @@
 </view>
 
 <view class="container">
-  <view class="item" wx:for="{{goods_info_price}}" wx:key="_id" bindtap="bind_detail" data-goods_id="{{item._id}}">
+  <view class="item" wx:for="{{goods_info}}" wx:key="_id" bindtap="bind_detail" data-goods_id="{{item._id}}">
  <image class="item_img" mode='aspectFill' src="{{imghref}}{{item.image}}"></image>
                <view class="item_text">
               <text>{{item.name}}</text>
               </view>
               <view class="item_text">
-              <text class="left-tit">￥{{item.price}}</text> 
+              <text class="left-tit">￥{{item.price}}元/公斤</text> 
               <text class="right-tit">销量{{item.sale}}</text>
               </view>
               <view class='temp'></view>

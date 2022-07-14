@@ -1,6 +1,5 @@
 // pages/classification/classification.js
 Page({
-
     /**
      * 页面的初始数据
      */
@@ -59,8 +58,10 @@ Page({
           }
         ],
         curNav: 1,
-        curIndex: 0
+        curIndex: 0,
+        goods_info:[{}]
     },
+
   //事件处理函数
   switchRightTab: function(e) {
     // 获取item项的id，和数组的下标值
@@ -72,19 +73,50 @@ Page({
       curIndex: index
     })
   },
+  
   bind_detail:function(e){
     let id=e.currentTarget.dataset.id //获取点击产品时拿到的id，就是data-id传过来的值
-    // wx.navigateTo跳转页面的方法
-    //URL是传递的是详情页的路径，把id拼接传过去就可以啦
     wx.navigateTo({
         url: "../detail_mune/detail_mune?id="+id,
     })
-},
+  },
+
+  handleSearch(event){
+    var value=event.detail;
+    var subjects=new Array();
+    if(!value || value === ""){
+      return;
+    }
+    console.log(this.data.goods_info);
+    for (var i=0;i<this.data.goods_info.length;i++){
+      if(this.data.goods_info[i].name.indexOf(value)>=0){
+        subjects.push(this.data.goods_info[i]);
+      }
+    }
+    console.log('subjects',subjects);
+    wx.setStorage({
+      key: 'searchresult',
+      data: subjects
+    })
+    //跳转到搜索结果页面
+    // wx.navigateTo({
+    //   url: '../pay/pay',
+    // })
+  },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+      wx.getStorage({
+        key:'goods_info',
+        success: (res) => {
+          console.log("获取商品",res);
+          this.setData({
+            goods_info:res.data
+          })
+        }
+      })
     },
 
     /**

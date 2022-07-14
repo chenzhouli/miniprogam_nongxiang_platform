@@ -1,20 +1,19 @@
 // pages/buy/buy.js
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
         topImgs:[],
-        goods_info_price:[{}],
-        goods_info_sale:[{}],
+        goods_info:[{}],
         haveGetRecord:false, //是否有>=1个商品
-        /**  * 页面配置  */
-    winWidth: 0,
-    winHeight: 0,
-    // tab切换  
-    currentTab: 0,
+        /* 页面配置  */
+        winWidth: 0,
+        winHeight: 0,
+        // tab切换  
+        currentTab: 0,
     },
+
     /**
      * 生命周期函数--监听页面加载
      */
@@ -22,28 +21,29 @@ Page({
         this.getTopImgs();
         this.getgoods_info();
     },
-        //获取顶部轮播图
+
+    //获取顶部轮播图
     getTopImgs(){
-            wx.cloud.database().collection("buy_toppic").get()
-              .then(res =>{
-                  console.log('请求成功',res)
-                  this.setData({
-                      topImgs:res.data
-                  })
-              })
-              .catch(res =>{
-                console.log('请求失败',res)
+      wx.cloud.database().collection("buy_toppic").get()
+        .then(res =>{
+          console.log('请求成功',res)
+          this.setData({
+            topImgs:res.data
+          })
+        })
+        .catch(res =>{
+          console.log('请求失败',res)
+        });
+        var that = this;
+        /* 获取系统信息 */
+        wx.getSystemInfo({
+          success: function (res) {
+            that.setData({
+              winWidth: res.windowWidth,
+              winHeight: res.windowHeight
             });
-            var that = this;
-            /* 获取系统信息 */
-            wx.getSystemInfo({
-              success: function (res) {
-                that.setData({
-                  winWidth: res.windowWidth,
-                  winHeight: res.windowHeight
-                });
-              }
-            })
+          }
+        })
     },
 
     //获取商品
@@ -57,82 +57,98 @@ Page({
           env: this.data.envId
         },
         data: {
-          type: 'selectAllgoods',
-          index:'price'
+          type: 'getcart',
+          index:'merchandise_info'
         }
       }).then((resp) => {
         console.log('请求成功',resp)
         this.setData({
           haveGetRecord: true,
-          goods_info_price: resp.result.data
+          goods_info: resp.result.data
         });
+        wx.setStorage({
+          key: "goods_info",
+          data: resp.result.data
+        })
        wx.hideLoading();
-     }).catch(resp =>{
+      }).catch(resp =>{
       console.log('请求失败',resp)
-     });
-
-     wx.cloud.callFunction({
-      name: 'quickstartFunctions',
-      config: {
-        env: this.data.envId
-      },
-      data: {
-        type: 'selectAllgoods',
-        index:'sale'
-      }
-    }).then((resp) => {
-      console.log('请求成功',resp)
-      this.setData({
-        haveGetRecord: true,
-        goods_info_sale: resp.result.data
       });
-     wx.hideLoading();
-   }).catch(resp =>{
-    console.log('请求失败',resp)
-   });
     },
 
+    binbuycar(){
+      wx.navigateTo({
+          url: '../../pages/buy_car/buy_car',
+        })
+    },
+    
+    //跳转推荐
     bind_tuijian(){
-        wx.navigateTo({
+      wx.navigateTo({
             url: "../../pages/detail_mune/detail_mune?id="+0,
           })
     },
+
     //跳转订单
     bind_cart(){
-        wx.navigateTo({
-            url: '../../pages/dingdan/dingdan'
-          })
+      wx.navigateTo({
+        url: '../../pages/dingdan/dingdan'
+      })
     },
+
     //跳转分类
-        bind_class(){
-            wx.navigateTo({
-                url: '../../pages/classification/classification'
-              })
-        },
-    bindChange: function (e) {
-        var that = this;
-        that.setData({ currentTab: e.detail.current });
+    bind_class(){
+      wx.navigateTo({
+        url: '../../pages/classification/classification'
+      })
     },
-      /**  * 点击tab切换  */
+
+    bindChange: function (e) {
+      var that = this;
+      that.setData({ currentTab: e.detail.current });
+    },
+
+    /**  * 点击tab切换  */
     swichNav: function (e) {
-        var that = this;
-        if (this.data.currentTab === e.target.dataset.current) {
-          return false;
-        } else {
-          that.setData({
-            currentTab: e.target.dataset.current
-          })
-        }
+      var that = this;
+      if (this.data.currentTab === e.target.dataset.current) {
+        return false;
+      } else {
+        that.setData({
+          currentTab: e.target.dataset.current
+        })
+      }
     },
 
     bind_detail:function(e){
-        let goods_id=e.currentTarget.dataset.goods_id //获取点击产品时拿到的id，就是data-id传过来的值
-        // wx.navigateTo跳转页面的方法
-        //URL是传递的是详情页的路径，把id拼接传过去就可以啦
+      let goods_id=e.currentTarget.dataset.goods_id //获取点击产品时拿到的id，就是data-id传过来的值
         wx.navigateTo({
-            url: "../detail/detail?goods_id="+goods_id,
+          url: "../detail/detail?goods_id="+goods_id,
         })
     },
+
+    handleSearch(event){
+      var value=event.detail;
+      var subjects=new Array();
+      if(!value || value === ""){
+        return;
+      }
+      for (var i=0;i<this.data.goods_info.length;i++){
+        if(this.data.goods_info[i].name.indexOf(value)>=0){
+          subjects.push(this.data.goods_info[i]);
+        }
+      }
+      console.log('subjects',subjects);
+      wx.setStorage({
+        key: 'searchresult',
+        data: subjects
+      })
+      //跳转到搜索结果页面
+      // wx.navigateTo({
+      //   url: '../pay/pay',
+      // })
+    },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

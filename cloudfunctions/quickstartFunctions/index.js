@@ -7,7 +7,7 @@ const add_dingdan = require('./add_dingdan/index');
 const getcart = require('./getcart/index'); 
 const dele_cart = require('./dele_cart/index'); 
 const changenum = require('./changenum/index'); 
-const selectAllgoods = require('./selectAllgoods/index');
+const selectcategory = require('./selectcategory/index');
 const selectAllland = require('./selectAllland/index');
 const updateRecord = require('./updateRecord/index');
 const sumRecord = require('./sumRecord/index');
@@ -34,8 +34,8 @@ exports.main = async (event, context) => {
       return await dele_cart.main(event, context);
     case 'changenum': 
       return await changenum.main(event, context); 
-    case 'selectAllgoods':
-      return await selectAllgoods.main(event, context);
+    case 'selectcategory':
+      return await selectcategory.main(event, context);
     case 'selectAllland':
       return await selectAllland.main(event, context);
     case 'updateRecord':

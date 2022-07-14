@@ -9,6 +9,7 @@
       placeholder="{{placeholder}}" 
       class="input"
       confirm-type="search"
+      focus="true"
     ></input>
     <image
      wx:if="{{inputValue}}" 

@@ -30,6 +30,7 @@ Component({
       },
       // 用户点击确定触发
       handleConfirm() {
+        console.log("回车搜索",this.data.inputValue);
         this.triggerEvent('handleSearch', this.data.inputValue)
       }
     }

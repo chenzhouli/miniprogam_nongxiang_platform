@@ -1,27 +1,27 @@
+//const { privateEncrypt } = require("crypto");
+
 // pages/detail_mune/detail_mune.js
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {
-        id:"",
-            // tab切换  
-    currentTab: 0,
+      id:"",
+      currentTab: 0,  // tab切换
+      goods_info_price:[{}],
+      goods_info_sale:[{}],
     },
+    
     bind_detail:function(e){
         let goods_id=e.currentTarget.dataset.goods_id //获取点击产品时拿到的id，就是data-id传过来的值
-        // wx.navigateTo跳转页面的方法
-        //URL是传递的是详情页的路径，把id拼接传过去就可以啦
         wx.navigateTo({
             url: "../detail/detail?goods_id="+goods_id,
         })
     },
+
     bindChange: function (e) {
         var that = this;
         that.setData({ currentTab: e.detail.current });
     },
-      /**  * 点击tab切换  */
+
+    /* 点击tab切换  */
     swichNav: function (e) {
         var that = this;
         if (this.data.currentTab === e.target.dataset.current) {
@@ -32,12 +32,12 @@ Page({
           })
         }
     },
-    binbuycar(){
-        wx.navigateTo({
-            url: '../../pages/buy_car/buy_car',
-          })
-    },
 
+    binbuycar(){
+      wx.navigateTo({
+        url: '../../pages/buy_car/buy_car',
+      })
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -47,7 +47,54 @@ Page({
         this.setData({
           id:options.id
         })
-        console.log(this.data.id)
+        console.log(this.data.id);
+        this.getcategory();
+    },
+     
+    getcategory(){
+      //价格
+      wx.showLoading({
+        title: '数据加载中...'
+      });
+      wx.cloud.callFunction({
+        name: 'quickstartFunctions',
+        config: {
+          env: this.data.envId
+        },
+        data: {
+          type:'selectcategory',
+          index:'price',
+          cate:this.data.id
+        }
+      }).then((resp) => {
+      console.log('请求成功',resp);
+      this.setData({
+        goods_info_price: resp.result.data
+      });
+      wx.hideLoading();
+      }).catch(resp =>{
+      console.log('请求失败',resp);
+      });
+      //销量
+      wx.cloud.callFunction({
+        name: 'quickstartFunctions',
+        config: {
+          env: this.data.envId
+        },
+        data: {
+          type: 'selectcategory',
+          index:'sale',
+          cate:this.data.id
+        }
+      }).then((resp) => {
+        console.log('请求成功',resp);
+        this.setData({
+          goods_info_sale: resp.result.data
+        });
+      wx.hideLoading();
+      }).catch(resp =>{
+      console.log('请求失败',resp);
+      });
     },
 
     /**
