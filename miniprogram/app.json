@@ -20,7 +20,8 @@
     "pages/detail_txt/detail_txt",
     "pages/like/like",
     "pages/classification/classification",
-    "pages/detail_mune/detail_mune"
+    "pages/detail_mune/detail_mune",
+    "pages/search/search"
     
   ],
   "window":{

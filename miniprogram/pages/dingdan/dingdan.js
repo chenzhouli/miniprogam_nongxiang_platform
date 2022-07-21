@@ -5,9 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        topImgs:[],
-        dingdanlist:[{}],
-
+    dingdanlist:[],
      // tab切换  
     currentTab: 0,
     },
@@ -16,17 +14,26 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        this.getdingdan();
-        var pages = getCurrentPages(); //当前页面
-        var beforePage = pages[pages.length - 2]; //前一页
-        beforePage.onLoad(); // 执行前一个页面的onLoad方法
+        this.getdingdan().then(res =>{ //请求成功的时候进行下一步流程，这样就可以避免异步问题
+
+            　　　　console.log(res);
+            
+            　　}).catch(err =>{  //请求失败
+            
+            　　　　console.log(err);
+            
+            　　});
+        console.log(this.data.dingdanlist)
+    //    var pages = getCurrentPages(); //当前页面
+      //  var beforePage = pages[pages.length - 2]; //前一页
+       // beforePage.onLoad(); // 执行前一个页面的onLoad方法
     },
 
     getdingdan(){
       wx.showLoading({
         title: '数据加载中...'
         });
-
+        var that=this;
       wx.cloud.callFunction({
         name: 'quickstartFunctions',
         config: {
@@ -38,10 +45,10 @@ Page({
         }
       }).then((resp) => {
         console.log('请求成功',resp)
-        this.setData({
+        that.setData({
           //haveGetRecord: true,
-          dingdanlist: resp.result.data
-        });
+          dingdanlist: resp.result.data,
+        });  
        wx.hideLoading();
      }).catch(resp =>{
       console.log('请求失败',resp)
@@ -87,7 +94,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+        
     },
 
     /**

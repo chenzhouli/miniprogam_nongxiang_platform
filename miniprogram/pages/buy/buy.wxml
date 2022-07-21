@@ -33,7 +33,7 @@
   <view class="item" wx:for="{{goods_info}}" wx:key="_id" bindtap="bind_detail" data-goods_id="{{item._id}}">
  <image class="item_img" mode='aspectFill' src="{{imghref}}{{item.image}}"></image>
                <view class="item_text">
-              <text>{{item.name}}</text>
+              <text class="tit">{{item.name}}</text>
               </view>
               <view class="item_text">
               <text class="left-tit">￥{{item.price}}元/公斤</text> 
