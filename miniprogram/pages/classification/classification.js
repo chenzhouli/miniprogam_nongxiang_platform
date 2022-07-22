@@ -99,9 +99,9 @@ Page({
       data: subjects
     })
     //跳转到搜索结果页面
-    // wx.navigateTo({
-    //   url: '../pay/pay',
-    // })
+    wx.navigateTo({
+      url: '../search/search',
+    })
   },
 
     /**

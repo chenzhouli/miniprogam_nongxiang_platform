@@ -6,15 +6,15 @@
 ></searchbar>
     <view>
         <view class='list'>
-  <block wx:for='{{goods_info_price}}' wx:key="_id" wx:for-item="item">
+  <block wx:for='{{goods_select}}' wx:key="_id" wx:for-item="item">
   <view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
       <view class='img'>
         <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
       </view>
       <view class='info'>
         <view class='title' style="width: 113rpx; height: 61rpx; display: block; box-sizing: border-box">{{item.name}}</view> 
-        <view class='price' style="width: 113rpx; height: 47rpx; display: block; box-sizing: border-box">￥{{item.price}}</view> 
-        <view class='num' style="position: absolute; left: 1rpx; top: 165rpx">销量{{item.sale}}</view>
+        <view class='price' style="width: 113rpx; height: 47rpx; display: block; box-sizing: border-box">￥{{item.price}}元/公斤</view> 
+        <view class='num' style="position: absolute; left: 1rpx; top: 165rpx">销量{{item.sale}}斤</view>
       </view>
       <view class='clear'></view>
   </view>

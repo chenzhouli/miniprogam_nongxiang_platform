@@ -37,7 +37,7 @@
               </view>
               <view class="item_text">
               <text class="left-tit">￥{{item.price}}元/公斤</text> 
-              <text class="right-tit">销量{{item.sale}}</text>
+              <text class="right-tit">销量{{item.sale}}斤</text>
               </view>
               <view class='temp'></view>
           </view>

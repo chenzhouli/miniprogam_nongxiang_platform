@@ -5,25 +5,25 @@ Page({
      * 页面的初始数据
      */
     data: {
-    dingdanlist:[],
-     // tab切换  
-    currentTab: 0,
+      dingdanlist_a:[{
+        name:"白菜",
+        num:1,
+        price:55,
+        sale:66,
+        _id:"684266796277fcfe0154db61377b5282",
+        image:"https://656e-env-6g948tux97e332ca-1311388574.tcb.qcloud.la/merchandise/%E7%99%BD%E8%8F%9C.jpg"
+      }],
+      dingdanlist:[{}],
+      // tab切换  
+      currentTab: 0,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        this.getdingdan().then(res =>{ //请求成功的时候进行下一步流程，这样就可以避免异步问题
-
-            　　　　console.log(res);
-            
-            　　}).catch(err =>{  //请求失败
-            
-            　　　　console.log(err);
-            
-            　　});
-        console.log(this.data.dingdanlist)
+        this.getdingdan(); //请求成功的时候进行下一步流程，这样就可以避免异步问题
+        console.log(this.data.dingdanlist_a)
     //    var pages = getCurrentPages(); //当前页面
       //  var beforePage = pages[pages.length - 2]; //前一页
        // beforePage.onLoad(); // 执行前一个页面的onLoad方法
@@ -33,7 +33,7 @@ Page({
       wx.showLoading({
         title: '数据加载中...'
         });
-        var that=this;
+      var that=this;
       wx.cloud.callFunction({
         name: 'quickstartFunctions',
         config: {
@@ -57,25 +57,24 @@ Page({
 
     
     bindChange: function (e) {
-        var that = this;
-        that.setData({ currentTab: e.detail.current });
+      var that = this;
+      that.setData({ currentTab: e.detail.current });
     },
 
     /**  * 点击tab切换  */
     swichNav: function (e) {
-        var that = this;
-        if (this.data.currentTab === e.target.dataset.current) {
-          return false;
-        } else {
-          that.setData({
-            currentTab: e.target.dataset.current
-          })
-        }
+      var that = this;
+      if (this.data.currentTab === e.target.dataset.current) {
+        return false;
+      } else {
+        that.setData({
+          currentTab: e.target.dataset.current
+        })
+      }
     },
     
     bind_detail:function(e){
       let goods_id=e.currentTarget.dataset.goods_id //获取点击产品时拿到的id，就是data-id传过来的值
-      // wx.navigateTo跳转页面的方法
       //URL是传递的是详情页的路径，把id拼接传过去就可以啦
       wx.navigateTo({
           url: "../detail/detail?goods_id="+goods_id,

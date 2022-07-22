@@ -18,7 +18,7 @@ data-current="0" bindtap='swichNav'>
 
 <view>
     <view class='list'>
-<block wx:for='{{dingdanlist}}' wx:key="_id" wx:for-item="item">
+<block wx:for='{{dingdanlist_a}}' wx:key="_id" wx:for-item="item">
 <view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
   <view class='img'>
     <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
@@ -39,7 +39,7 @@ data-current="0" bindtap='swichNav'>
 
 <view>
     <view class='list'>
-<block wx:for='{{dingdanlist}}' wx:key="_id" wx:for-item="item">
+<block wx:for='{{dingdanlist_a}}' wx:key="_id" wx:for-item="item">
 <view class="list_item" bindtap="bind_detail" data-goods_id="{{item._id}}">
   <view class='img'>
     <image src="{{imghref}}{{item.image}}"  mode="scaleToFill"/>
