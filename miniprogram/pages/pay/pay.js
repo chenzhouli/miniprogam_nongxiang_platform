@@ -6,99 +6,97 @@ Page({
      * 页面的初始数据
      */
     data: {
-    consigneeName: "", //收货人姓名
-    phone: "",//电话
-    detailedAddress: "",//地址
-    dingdan:[{}]
-
+      consigneeName: "", //收货人姓名
+      phone: "",//电话
+      detailedAddress: "",//地址
+      dingdan:[{}]
     },
 
      /** 
-   * 输入框实时回调 
-   */ 
-  getusername: function (options) { 
-    //获取输入框输入的内容 
-    //console.log('options',options); 
-    app.globalData.goodsname = options.detail.value; 
-  }, 
- 
-  getuserphone: function (options) { 
-    //获取输入框输入的内容 
-    //console.log('options',options); 
-    app.globalData.goodsnumber = options.detail.value; 
-  }, 
-  getuseraddress: function (options) { 
-    //获取输入框输入的内容 
-    //console.log('options',options); 
-    app.globalData.goodsaddress = options.detail.value; 
-  }, 
+     * 输入框实时回调 
+     */ 
+    getusername: function (options) { 
+      //获取输入框输入的内容 
+      //console.log('options',options); 
+      app.globalData.goodsname = options.detail.value; 
+    }, 
+    getuserphone: function (options) { 
+      //获取输入框输入的内容 
+      //console.log('options',options); 
+      app.globalData.goodsnumber = options.detail.value; 
+    }, 
+    getuseraddress: function (options) { 
+      //获取输入框输入的内容 
+      //console.log('options',options); 
+      app.globalData.goodsaddress = options.detail.value; 
+    }, 
 
-      binpay(){
-        // this.getusername(); 
-        // this.getuserphone(); 
-        // this.getuseraddress(); 
-        this.update_dingdan(); //更新订单
-        this.update_cart();  //更新购物车
-        console.log('app',app.globalData) 
-        wx.showToast({
-            title: '购买成功',
-            icon: 'success',
-            duration: 2000
-          });
-        setTimeout(function(){
+    binpay(){
+      // this.getusername(); 
+      // this.getuserphone(); 
+      // this.getuseraddress(); 
+      this.update_dingdan(); //更新订单
+      this.update_cart();  //更新购物车
+      console.log('app',app.globalData) 
+      wx.showToast({
+        title: '购买成功',
+        icon: 'success',
+        duration: 2000
+      });
+      setTimeout(function(){
         wx.redirectTo({
           url: '../../pages/dingdan/dingdan',
-        })},2000)
-      },
+        })
+      },2000)
+    },
 
-      update_dingdan(){
-        var that = this
-        var newList = that.data.dingdan
-        for (var i = 0; i < newList.length; i++) {
-            wx.cloud.callFunction({ 
-              name: 'quickstartFunctions', 
-              config: { 
-                env: this.data.envId 
-              }, 
-              data: { 
-                type: 'add_dingdan', 
-                id:newList[i]._id,
-                num:newList[i].num,
-                image:newList[i].image,
-                price:newList[i].price,
-                sale:newList[i].sale,
-                name:newList[i].name
-              } 
-            }).then((resp) => { 
-              console.log('更新成功',resp) 
-            }).catch(resp =>{ 
-              console.log('更新失败',resp) 
-            }); 
-        }
-      },
+    update_dingdan(){
+      var that = this
+      var newList = that.data.dingdan
+      for (var i = 0; i < newList.length; i++) {
+        wx.cloud.callFunction({ 
+          name: 'quickstartFunctions', 
+            config: { 
+              env: this.data.envId 
+            }, 
+            data: { 
+              type: 'add_dingdan', 
+              id:newList[i]._id,
+              num:newList[i].num,
+              image:newList[i].image,
+              price:newList[i].price,
+              sale:newList[i].sale,
+              name:newList[i].name
+            } 
+        }).then((resp) => { 
+          console.log('更新成功',resp) 
+        }).catch(resp =>{ 
+          console.log('更新失败',resp) 
+        }); 
+      }
+    },
   
-      update_cart(){
-        var that = this
-        var newList = that.data.dingdan
-        for (var i = 0; i < newList.length; i++) {
-            wx.cloud.callFunction({ 
-              name: 'quickstartFunctions', 
-              config: { 
-                env: this.data.envId 
-              }, 
-              data: { 
-                type: 'dele_cart', 
-                id:newList[i]._id,
-              } 
-            }).then((resp) => { 
-              console.log('删除成功',resp) 
-            }).catch(resp =>{ 
-              console.log('删除失败',resp) 
-            }); 
-        }
-      },
+    update_cart(){
+      var that = this
+      var newList = that.data.dingdan
+      for (var i = 0; i < newList.length; i++) {
+        wx.cloud.callFunction({ 
+          name: 'quickstartFunctions', 
+            config: { 
+              env: this.data.envId 
+            }, 
+            data: { 
+              type: 'dele_cart', 
+              id:newList[i]._id,
+            } 
+          }).then((resp) => { 
+            console.log('删除成功',resp) 
+          }).catch(resp =>{ 
+            console.log('删除失败',resp) 
+          }); 
+      }
+    },
 
-      
     /**
      * 生命周期函数--监听页面加载
      */

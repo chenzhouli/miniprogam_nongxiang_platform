@@ -1,21 +1,21 @@
 // pages/detail/detail.js
 Page({
 
-    /**
-     * 页面的初始数据
-     */
-    data: {
-        goods_info:[{}],
-        id:"",
-        goods_img:"",
-        goods_title:"",
-        goods_xiaoliang:"",
-        goods_price:"",
-        detailImg:"",
-        swiperList:[],
-        num:1,
-        hideShopPopup: true,
-    },
+  /**
+  * 页面的初始数据
+  */
+  data: {
+    goods_info:[{}],
+    id:"",
+    goods_img:"",
+    goods_title:"",
+    goods_xiaoliang:"",
+    goods_price:"",
+    detailImg:"",
+    swiperList:[],
+    num:1,
+    hideShopPopup: true,
+  },
     
   tobuy: function () {
     this.setData({
@@ -35,6 +35,7 @@ Page({
       minusStatus: minusStatus
     });
   },
+
   /* 点击加号 */
   bindPlus: function () {
     var num = this.data.num;
@@ -45,6 +46,7 @@ Page({
       minusStatus: minusStatus
     });
   },
+
   /* 关闭购买页面 */
   closePopupTap:function(){
     this.setData({
@@ -61,7 +63,6 @@ Page({
       title: '数据加载中...'
       });
       
-
       this.setData({
         id:options.goods_id
       })
@@ -79,7 +80,6 @@ Page({
       }).then((resp) => {
         console.log('请求成功',resp);
         //console.log(resp.result.data[0]);
-
         this.setData({
           goods_info:resp.result.data,
           goods_img:resp.result.data[0].image,
@@ -116,51 +116,30 @@ Page({
       }).catch(resp =>{ 
         console.log('加入失败',resp) 
       }); 
-      //this.binbuycar();
     }, 
 
+    //立即购买
+    immeBuy() {
+      this.data.goods_info[0].num=this.data.num;
+      wx.setStorage({
+        key: 'dingdan',
+        data: this.data.goods_info
+      })
+      this.setData({
+        hideShopPopup: true,
+      })
+      wx.navigateTo({
+        url: '../pay/pay',
+      })
+    },
+    
     // 跳到购物车
     binbuycar() {
-    wx.navigateTo({
-      url: '../buy_car/buy_car',
-    })
-  },
-  //立即购买
-  immeBuy() {
-    this.data.goods_info[0].num=this.data.num;
-    wx.setStorage({
-      key: 'dingdan',
-      data: this.data.goods_info
-    })
-    //this.update_dingdan();
-    wx.navigateTo({
-      url: '../pay/pay',
-    })
-  },
-
-  // update_dingdan(){
-  //   wx.cloud.callFunction({ 
-  //     name: 'quickstartFunctions', 
-  //     config: { 
-  //       env: this.data.envId 
-  //     }, 
-  //     data: { 
-  //       type: 'add_dingdan', 
-  //       id:this.data.id,
-  //       num:this.data.num,
-  //       image:this.data.goods_img,
-  //       price:this.data.goods_price,
-  //       sale:this.data.goods_xiaoliang,
-  //       name:this.data.goods_title,
-  //       flag:0
-  //     } 
-  //   }).then((resp) => { 
-  //     console.log('更新成功',resp) 
-  //   }).catch(resp =>{ 
-  //     console.log('更新失败',resp) 
-  //   }); 
-  // },
-
+      wx.navigateTo({
+        url: '../buy_car/buy_car',
+      })
+    },
+  
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -172,7 +151,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
     },
 
     /**

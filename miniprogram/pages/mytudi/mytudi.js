@@ -17,33 +17,32 @@ Page({
     },
 
     getmyland(){
-        wx.cloud.callFunction({ 
-            name: 'quickstartFunctions', 
-            config: { 
-              env: this.data.envId 
-            }, 
-            data: { 
-              type: 'getcart', 
-              index:'my_land'
-            } 
-          }).then((resp) => { 
-            console.log('请求成功',resp) 
-            this.setData({ 
-              haveGetland: true, 
-              landlist: resp.result.data 
-            }); 
-          }).catch(resp =>{ 
-            console.log('请求失败',resp) 
-          }); 
+      wx.cloud.callFunction({ 
+        name: 'quickstartFunctions', 
+        config: { 
+          env: this.data.envId 
+        }, 
+        data: { 
+          type: 'getcart', 
+          index:'my_land'
+        } 
+      }).then((resp) => { 
+        console.log('请求成功',resp) 
+        this.setData({ 
+          haveGetland: true, 
+          landlist: resp.result.data 
+        }); 
+      }).catch(resp =>{ 
+        console.log('请求失败',resp) 
+      }); 
     },
 
     bind_detail:function(e){
-        let tudi_id=e.currentTarget.dataset.tudi_id //获取点击产品时拿到的id，就是data-id传过来的值
-        // wx.navigateTo跳转页面的方法
-        //URL是传递的是详情页的路径，把id拼接传过去就可以啦
-        wx.navigateTo({
-            url: "../detail_tudi/detail_tudi?tudi_id="+tudi_id,
-        })
+      let tudi_id=e.currentTarget.dataset.tudi_id //获取点击产品时拿到的id，就是data-id传过来的值
+      // wx.navigateTo跳转页面的方法
+      wx.navigateTo({
+        url: "../detail_tudi/detail_tudi?tudi_id="+tudi_id,
+      })
     },
 
     /**
@@ -57,7 +56,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+      this.onLoad();
     },
 
     /**

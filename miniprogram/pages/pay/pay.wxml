@@ -40,7 +40,7 @@
       <view class='info'>
         <view class='title'>{{item.name}}</view>
         <view class='num'>x{{item.num}}</view>
-        <text class='price'>￥{{item.price}}</text>
+        <text class='price'>￥{{item.price}}元/公斤</text>
         
       </view>
       <view class='clear'></view>

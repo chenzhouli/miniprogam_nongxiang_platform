@@ -8,7 +8,7 @@
       <view class='info'>
         <view class='title'>{{item.name}}</view>
         <view class='price'>￥{{item.price}}</view>
-        <view class='num'>面积：{{item.area}}</view>
+        <view class='num'>面积：{{item.area}}亩</view>
       </view>
       <view class='clear'></view>
   </view>

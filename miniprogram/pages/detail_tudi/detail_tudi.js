@@ -23,71 +23,83 @@ Page({
           hideShopPopup: false,
         })
       },
-      bindMinus: function () {
-        var num = this.data.num;
-        if (num > 1) {
-          num--;
-        }
-        // 只有大于一件的时候，才能normal状态，否则disable状态  
-        var minusStatus = num <= 1 ? 'disabled' : 'normal';
-        this.setData({
-          num: num,
-          minusStatus: minusStatus
-        });
-      },
-      /* 点击加号 */
-      bindPlus: function () {
-        var num = this.data.num;
-        num++;
-        var minusStatus = num < 1 ? 'disabled' : 'normal';
-        this.setData({
-          num: num,
-          minusStatus: minusStatus
-        });
-      },
-      /* 关闭购买页面 */
-      closePopupTap:function(){
-        this.setData({
-          hideShopPopup: true
-        })  
-      },
 
-      //选择认养
-  immeBuy() {
-    if(this.data.num<=this.data.tudi_area){
-      wx.cloud.callFunction({ 
-        name: 'quickstartFunctions', 
-        config: { 
-          env: this.data.envId 
-        }, 
-        data: { 
-         type: 'addmyland', 
-         id:this.data.id ,
-         num:this.data.num
-        } 
-      }).then((resp) => { 
-       console.log('请求成功',resp); 
-        wx.showToast({ 
-          title: '认养成功', 
-          icon: 'success', 
-          duration: 2000 
+    bindMinus: function () {
+      var num = this.data.num;
+      if (num > 1) {
+         num--;
+      }
+      // 只有大于一件的时候，才能normal状态，否则disable状态  
+      var minusStatus = num <= 1 ? 'disabled' : 'normal';
+      this.setData({
+        num: num,
+        minusStatus: minusStatus
+      });
+    },
+
+    /* 点击加号 */
+    bindPlus: function () {
+      var num = this.data.num;
+      num++;
+      var minusStatus = num < 1 ? 'disabled' : 'normal';
+      this.setData({
+        num: num,
+        minusStatus: minusStatus
+      });
+    },
+
+    /* 关闭购买页面 */
+    closePopupTap:function(){
+      this.setData({
+        hideShopPopup: true
+      })  
+    },
+
+    //选择认养
+    immeBuy() {
+      if(this.data.num<=this.data.tudi_area){
+        wx.cloud.callFunction({ 
+          name: 'quickstartFunctions', 
+          config: { 
+            env: this.data.envId 
+          }, 
+          data: { 
+           type: 'addmyland', 
+           id:this.data.id ,
+           num:this.data.num
+          } 
+        }).then((resp) => { 
+         console.log('请求成功',resp); 
+          wx.showToast({ 
+            title: '认养成功', 
+            icon: 'success', 
+            duration: 2000 
+          }); 
+          this.setData({
+            hideShopPopup: true,
+          });
+        }).catch(resp =>{ 
+          console.log('请求失败',resp) 
+          wx.showToast({ 
+            title: '认养亩数溢出', 
+            icon: 'error', 
+            duration: 2000 
+          }); 
+          this.setData({
+            hideShopPopup: true,
+          })
         }); 
-      }).catch(resp =>{ 
-        console.log('请求失败',resp) 
+      }else{
         wx.showToast({ 
-         title: '认养亩数溢出', 
-          icon: 'error', 
-          duration: 2000 
+          title: '认养亩数溢出', 
+            icon: 'error', 
+            duration: 2000 
         }); 
-      }); 
-    }else{
-      wx.showToast({ 
-        title: '认养亩数溢出', 
-         icon: 'error', 
-         duration: 2000 
-       }); 
-    }
-},
+        this.setData({
+          hideShopPopup: true,
+        })
+      }
+  },
 
     /**
      * 生命周期函数--监听页面加载
@@ -100,16 +112,6 @@ Page({
         id:options.tudi_id
       })
 
-      let pages=getCurrentPages();
-      let prevpage=pages[pages.length-2];
-      let indexx=''
-      console.log(prevpage.route);
-      if (prevpage.route=='pages/adopt/adopt'){
-        indexx='empty_land'
-      }else{
-        indexx='my_land'
-      }
-
       wx.cloud.callFunction({
         name: 'quickstartFunctions',
         config: {
@@ -118,7 +120,7 @@ Page({
         data: {
           type: 'selectgoods',
           id: options.tudi_id,
-          index:indexx
+          index:'empty_land'
         }
       }).then((resp) => {
         console.log('请求成功',resp);

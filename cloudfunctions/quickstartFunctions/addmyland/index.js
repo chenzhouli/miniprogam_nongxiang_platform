@@ -25,7 +25,7 @@ exports.main = async (event, context) => {
       }catch(err){
         await db.collection('my_land').add({ 
           data:{ 
-            //_id:event.id, 
+            _id:event.id, 
             name:res.data.name, 
             price:res.data.price, 
             address:res.data.address,  
