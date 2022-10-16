@@ -1,11 +1,11 @@
 # miniProgram Nong·Xiang Platform
 It is an application of some ideas about country development, still working on it:blush:.
-# :deciduous_tree: features
+# :deciduous_tree: Features
 - cloud-based development
 - native applet framework for front-end
 - cloud function for back-end
 
-# :roller_coaster:Function
+# :roller_coaster: Function
 - land transaction
 - agricultural products sales
 - news around you
